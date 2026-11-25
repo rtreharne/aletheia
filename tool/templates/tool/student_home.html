@@ -1,0 +1,81 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>{{ assignment.title }}</h1>
+
+{% if latest %}
+  <p class="muted">Your last result: <a href="{% url 'attempt' assignment.pk latest.pk %}">{{ latest.overall_alignment|floatformat:0 }}% alignment</a></p>
+{% endif %}
+
+{% if failed %}
+  <p class="notice">We couldn't prepare questions from your last upload. Please try again.</p>
+{% endif %}
+
+{% if can_start %}
+  {% if assignment.canvas_course %}
+  <p class="notice"><strong>Hand in here, not with Canvas's Submit button.</strong></p>
+  {% endif %}
+  {% if invited %}
+  <p class="notice"><strong>Your instructor has invited you to try again.</strong> Upload your work below to start a new attempt.</p>
+  {% endif %}
+  {% if assignment.room_word_required %}
+  <p class="notice"><strong>Answer your questions in the room.</strong> You can upload your work now, but the questions only open at your in-person session: you'll need a word shown on the screen there to begin, and again once or twice along the way.</p>
+  {% endif %}
+  <p class="muted">{% if gradebook %}Upload your {% if assignment.code_viva %}code{% else %}work{% endif %}. It is handed in to your course for marking as soon as you upload it. Aletheia then draws{% else %}Upload the {% if assignment.code_viva %}code{% else %}work{% endif %} you submitted. Aletheia will draw{% endif %} {{ assignment.objective_count }} learning objective{{ assignment.objective_count|pluralize }} from it, then ask you timed questions on each: {% if assignment.time_each_question %}{{ assignment.seconds_per_question }} seconds per question{% else %}{{ assignment.time_limit_minutes }} minute{{ assignment.time_limit_minutes|pluralize }} for the whole quiz{% endif %}.</p>
+  <form method="post" action="{% url 'submit' assignment.pk %}" enctype="multipart/form-data" id="upload">
+    {% csrf_token %}
+    <div class="field">
+      <label class="dropzone" for="{{ form.file.id_for_label }}" id="dropzone">
+        {{ form.file }}
+        <span class="dz-title" id="dz-title">Choose {% if assignment.code_viva %}your code{% else %}your work{% endif %}</span>
+        <span class="dz-sub" id="dz-sub">or drag a file here</span>
+      </label>
+      <div class="help">{% if assignment.code_viva %}A .zip of your project, or a single source file or notebook, up to 20 MB.{% else %}PDF, Word (.docx) or text, up to 20 MB.{% endif %}</div>
+      {{ form.file.errors }}
+    </div>
+    <div class="actions"><button class="button" type="submit">Continue</button></div>
+  </form>
+{% else %}
+  <p class="muted">You've used all your attempts.</p>
+{% endif %}
+{% if dev_reset %}
+<hr>
+<form method="post" action="{% url 'dev_reset' %}">
+  {% csrf_token %}
+  <button class="button quiet" type="submit">Reset</button>
+  <span class="help">&nbsp;Development only: deletes this student's attempts.</span>
+</form>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<script>
+  var f = document.getElementById("upload");
+  if (f) f.addEventListener("submit", function () { var b = f.querySelector("button"); b.disabled = true; b.textContent = "Uploading"; });
+
+  var zone = document.getElementById("dropzone");
+  if (zone) {
+    var input = zone.querySelector("input[type=file]");
+    var title = document.getElementById("dz-title"), sub = document.getElementById("dz-sub");
+    var emptyTitle = title.textContent, emptySub = sub.textContent;
+    function size(bytes) {
+      return bytes < 1024 * 1024 ? Math.max(1, Math.round(bytes / 1024)) + " KB" : (bytes / 1024 / 1024).toFixed(1) + " MB";
+    }
+    function show() {
+      var file = input.files && input.files[0];
+      zone.classList.toggle("has-file", !!file);
+      title.textContent = file ? file.name : emptyTitle;
+      sub.textContent = file ? size(file.size) + " · choose a different file" : emptySub;
+    }
+    input.addEventListener("change", show);
+    ["dragenter", "dragover"].forEach(function (type) {
+      zone.addEventListener(type, function (e) { e.preventDefault(); zone.classList.add("over"); });
+    });
+    ["dragleave", "drop"].forEach(function (type) {
+      zone.addEventListener(type, function (e) { e.preventDefault(); zone.classList.remove("over"); });
+    });
+    zone.addEventListener("drop", function (e) {
+      if (e.dataTransfer && e.dataTransfer.files.length) { input.files = e.dataTransfer.files; show(); }
+    });
+    show();
+  }
+</script>
+{% endblock %}

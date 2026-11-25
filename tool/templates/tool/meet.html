@@ -1,0 +1,45 @@
+{% extends "tool/base.html" %}
+{% block title %}Your call · Aletheia{% endblock %}
+{% block content %}
+{% if action == "confirm" %}
+  {% if state == "pending" %}
+    <h1>Confirm your call</h1>
+    <p>A 15-minute online call with Aletheia:</p>
+    <p class="when">{{ when }}</p>
+    <p class="muted small" id="local-time" data-start="{{ enquiry.meeting_start|date:'c' }}"></p>
+    <form method="post">{% csrf_token %}<div class="actions"><button class="button" type="submit">Confirm</button></div></form>
+  {% elif state == "confirmed" %}
+    <h1>Your call is booked</h1>
+    <p class="when">{{ when }}</p>
+    <p class="muted small" id="local-time" data-start="{{ enquiry.meeting_start|date:'c' }}"></p>
+    <p class="muted">We've emailed {{ enquiry.email }} a calendar invitation{% if meeting_url %} with the video link{% endif %}.</p>
+  {% elif state == "cancelled" %}
+    <h1>This call was cancelled</h1>
+    <p class="muted"><a href="{% url 'home' %}#contact">Book another time</a></p>
+  {% else %}
+    <h1>That time is no longer available</h1>
+    <p class="muted">The time was taken, or the confirmation link has expired. <a href="{% url 'home' %}#contact">Choose another time</a>.</p>
+  {% endif %}
+{% else %}
+  {% if state == "cancelled" %}
+    <h1>Your call is cancelled</h1>
+    <p class="muted"><a href="{% url 'home' %}#contact">Book another time</a> whenever suits you.</p>
+  {% else %}
+    <h1>Cancel your call?</h1>
+    <p class="when">{{ when }}</p>
+    <form method="post">{% csrf_token %}<div class="actions"><button class="button" type="submit">Cancel the call</button></div></form>
+  {% endif %}
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<script>
+  var el = document.getElementById("local-time");
+  if (el) {
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (tz && tz !== "Europe/London") {
+      var d = new Date(el.dataset.start);
+      el.textContent = "Your time: " + d.toLocaleString(undefined, { weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }) + " (" + tz + ")";
+    }
+  }
+</script>
+{% endblock %}

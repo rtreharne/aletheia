@@ -1,0 +1,212 @@
+{
+  "slug": "history",
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-11-25T09:17:53+00:00",
+  "objectives": [
+    {
+      "text": "Explain the distinction the essay draws between the Irish famine as the occasion of repeal and Peel's conviction as its cause."
+    },
+    {
+      "text": "Justify the claim that the Anti-Corn Law League made repeal thinkable but did not make it happen, using evidence about parliamentary votes."
+    },
+    {
+      "text": "Explain how Peel's 1842 and 1845 budgets and his changing view of wages and bread prices show a conversion to free trade before the famine."
+    },
+    {
+      "text": "Interpret Peel's political argument that conceding repeal would preserve the authority and institutions of the landed governing class."
+    },
+    {
+      "text": "Evaluate why Peel's insistence on permanent repeal, despite splitting his party, supports the conclusion that his conviction was the decisive cause."
+    }
+  ],
+  "questions": [
+    {
+      "objective_index": 0,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "You argue the Irish famine was the occasion, not the cause, of repeal. What evidence do you use to support this distinction?",
+      "code": "",
+      "options": [
+        "Peel insisted on permanent repeal when temporary suspension would have met the crisis",
+        "Peel's Cabinet unanimously backed repeal once news of the blight arrived",
+        "Repeal lowered grain prices enough to end starvation in Ireland within two years",
+        "The famine struck before the League had won a majority in the Commons"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "You argue that opening the ports temporarily would have met the emergency, so Peel's insistence on permanent repeal, despite splitting his party, shows conviction drove the policy. You also note repeal did little to relieve Ireland, and that his Cabinet refused even suspension."
+    },
+    {
+      "objective_index": 0,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "You distinguish the famine as the occasion of repeal from Peel's conviction as its cause. Which statements reflect that distinction as your essay draws it?",
+      "code": "",
+      "options": [
+        "Peel had judged the Corn Laws indefensible before the blight reached Ireland",
+        "The famine converted Peel from protection to free trade in late 1845",
+        "The famine explains why repeal came in 1845–46 rather than later",
+        "Peel's conviction explains why repeal was permanent rather than a temporary suspension",
+        "Repeal was chosen because it was the most effective relief for Irish hunger"
+      ],
+      "correct": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "You argue the famine set the timing, but Peel's pre-existing conviction, visible by 1844, explains the permanent form of repeal. The famine did not convert him, and you note repeal did little to relieve Ireland, where the poor could not afford food at any price."
+    },
+    {
+      "objective_index": 1,
+      "position": 0,
+      "kind": "maq",
+      "prompt": "You argue the Anti-Corn Law League made repeal thinkable but did not make it happen. Which statements support this using evidence about parliamentary votes?",
+      "code": "",
+      "options": [
+        "Decisive votes came from Conservative MPs whose constituents gained nothing from repeal",
+        "Two-thirds of Conservative MPs voted against their own leader",
+        "Repeal passed mainly because county voters registered by the League pressed their MPs",
+        "A majority of MPs were still protectionists in 1845",
+        "League-backed MPs won enough by-elections to form a free-trade majority"
+      ],
+      "correct": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "You show the League never won the Commons: protectionists held a majority in 1845, and repeal depended on Conservative MPs voting against their constituents' interests, while most of Peel's party opposed him. The League's county registration threatened the balance but did not deliver the votes."
+    },
+    {
+      "objective_index": 1,
+      "position": 1,
+      "kind": "mcq",
+      "prompt": "In your essay, the League made repeal thinkable but not happen. What does the voting evidence you cite show about how repeal actually passed?",
+      "code": "",
+      "options": [
+        "Peel carried it with votes from MPs whose constituents gained nothing from it",
+        "Most Conservative MPs backed Peel once the League's petitions reached Parliament",
+        "Newly registered county freeholders forced protectionist MPs to change sides",
+        "League by-election victories had produced a free-trade majority by 1845"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "You cite McKeown: the decisive votes came from Conservative MPs whose constituents gained nothing, so interest-based lobbying explains repeal poorly. The League's freeholder registration only threatened change; most MPs were still protectionists in 1845 and two-thirds of Conservatives opposed Peel."
+    },
+    {
+      "objective_index": 2,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "In your essay, Peel's changing view of wages and bread prices helps show his pre-famine conversion. What view did he abandon, according to your account?",
+      "code": "",
+      "options": [
+        "That foreign governments would retaliate against British exports",
+        "That income tax was needed to fund lower import duties",
+        "That wages rise and fall with the price of bread",
+        "That cheap raw materials would encourage manufacturing employment"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "You cite Irwin's argument that Peel abandoned the belief that wages track bread prices, removing a key argument for protection. Cheap raw materials boosting manufacturing was a view Peel held, underpinning his 1842 and 1845 budgets, not one he gave up."
+    },
+    {
+      "objective_index": 2,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "You argue Peel's budgets show a conversion to free trade before the famine. Which statements match how your essay describes those budgets and their purpose?",
+      "code": "",
+      "options": [
+        "Peel expected cheap imports to raise employment and reduce social unrest",
+        "The 1842 budget abolished the sliding scale on foreign wheat entirely",
+        "The 1845 budget suspended the Corn Laws in anticipation of the blight",
+        "The 1845 budget abolished duties on raw cotton and many other goods",
+        "Peel cut duties mainly to win over the Anti-Corn Law League's voters",
+        "The 1842 budget reintroduced income tax to allow cutting over seven hundred import duties"
+      ],
+      "correct": [
+        0,
+        3,
+        5
+      ],
+      "explanation": "You describe income tax funding over seven hundred duty cuts in 1842, cotton duties abolished in 1845, and the aim of cheap imports easing the hungry forties. The 1842 budget only modified the sliding scale; it did not abolish it."
+    },
+    {
+      "objective_index": 3,
+      "position": 0,
+      "kind": "maq",
+      "prompt": "You present Peel's political case for repeal as a conservative argument for change. Which statements capture that argument as your essay explains it?",
+      "code": "",
+      "options": [
+        "Peel conceded repeal mainly to secure the League's support at the next election",
+        "Defending a law seen as protecting rents risked fuelling demands for further parliamentary reform",
+        "Peel expected repeal to raise rents and so strengthen landed incomes",
+        "Peel aimed to weaken the aristocracy's hold on Parliament by ending protection",
+        "Peel sacrificed a policy to preserve the institutional position of the landed class",
+        "Repeal would show Parliament could serve the national interest rather than landowners"
+      ],
+      "correct": [
+        1,
+        4,
+        5
+      ],
+      "explanation": "You argue Peel feared that defending the Corn Laws would boost reform demands and undermine the constitution, so conceding repeal preserved landed authority. He was protecting, not weakening, the aristocracy's position, and the motive was institutional rather than winning League votes."
+    },
+    {
+      "objective_index": 3,
+      "position": 1,
+      "kind": "mcq",
+      "prompt": "You describe Peel's political case as a conservative argument for change. In that argument, what did continuing to defend the Corn Laws chiefly put at risk?",
+      "code": "",
+      "options": [
+        "The Conservative majority at the next general election",
+        "The legitimacy of the constitution and the landed class's authority",
+        "Landowners' rental incomes as grain prices collapsed",
+        "Britain's food security if foreign suppliers were cut off in wartime"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "You argue that Peel feared defending a law seen as protecting rents would fuel demands for reform and weaken the constitution's legitimacy, so he conceded the policy to protect the institutions. Electoral calculation is tempting, but you present repeal as costing Peel his party, not saving it."
+    },
+    {
+      "objective_index": 4,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "You conclude that Peel's acceptance of a party split shows repeal was principle, not expediency. Why does that cost support your claim that conviction was decisive?",
+      "code": "",
+      "options": [
+        "The split proved most Conservatives had secretly been converted by the League",
+        "Losing his party freed Peel to respond to Irish hunger without constraint",
+        "A politician acting expediently would not knowingly sacrifice his party for a policy",
+        "The split showed protectionists accepted that the famine required permanent repeal"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "You argue that Peel's willingness to pay so high a price, with two-thirds of his MPs voting against him, only makes sense if he acted from principle. The split did not show Conservatives converted; most opposed him."
+    },
+    {
+      "objective_index": 4,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "You conclude that Peel's conviction, not the famine or the League, was decisive. Which statements explain how permanent repeal, despite the party split, supports that conclusion?",
+      "code": "",
+      "options": [
+        "Peel refused to suspend a law in an emergency only to restore it afterwards",
+        "A temporary suspension would have met the Irish emergency, so permanence reflected Peel's own choice",
+        "Peel knowingly accepted two-thirds of his MPs voting against him to carry it",
+        "The League's by-election gains left Peel no option but permanent repeal",
+        "Permanent repeal was needed to keep Irish grain protected and preserve tillage",
+        "Permanent repeal was the only way to get grain to starving Irish labourers"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "You argue the famine needed only temporary measures, so turning it into permanent repeal, at the knowing cost of splitting his party, shows Peel's own conviction. Permanent repeal was not the best Irish relief: you note repeal did little for Ireland and removed protection from Irish grain."
+    }
+  ]
+}

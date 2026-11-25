@@ -1,0 +1,61 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Room word · Aletheia</title>
+<link rel="stylesheet" href="{% static 'tool/aletheia.css' %}">
+<style>
+  html, body { margin: 0; height: 100%; background: #fff; color: #1a1a1a; }
+  body {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 2rem; box-sizing: border-box;
+    font-family: "Libre Baskerville", Baskerville, "Baskerville Old Face", Georgia, serif;
+  }
+  .label { font-size: clamp(0.8rem, 1.5vw, 1.1rem); letter-spacing: 0.4em; color: #8a8a8a; margin: 0 0 2rem 0.4em; }
+  .word { font-size: clamp(4rem, 16vw, 13rem); line-height: 1; margin: 0; letter-spacing: 0.02em; text-align: center; }
+  .track { width: min(40rem, 70vw); height: 3px; background: #e6e6e6; margin-top: 3rem; }
+  .track span { display: block; height: 100%; background: #1a1a1a; transform-origin: left; }
+  .title { position: fixed; bottom: 1.5rem; left: 0; right: 0; text-align: center; color: #8a8a8a; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<p class="label">ALETHEIA · ROOM WORD</p>
+<p class="word" id="word" aria-live="polite">&nbsp;</p>
+<div class="track"><span id="bar"></span></div>
+<p class="title">{{ assignment.title }}</p>
+<script>
+(function () {
+  var url = "{{ word_url|escapejs }}", rotation = {{ rotation }};
+  var word = document.getElementById("word"), bar = document.getElementById("bar"), timer;
+  function show(data) {
+    if (word.textContent !== data.word) word.textContent = data.word;
+    bar.style.transition = "none";
+    bar.style.transform = "scaleX(" + data.seconds_left / rotation + ")";
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      bar.style.transition = "transform " + data.seconds_left + "s linear";
+      bar.style.transform = "scaleX(0)";
+    }); });
+    clearTimeout(timer);
+    timer = setTimeout(load, data.seconds_left * 1000 + 150);
+  }
+  function expired() {
+    word.textContent = "";
+    bar.style.transform = "scaleX(0)";
+    document.querySelector(".label").textContent = "THIS SCREEN HAS EXPIRED · REOPEN IT FROM THE DASHBOARD";
+  }
+  function load() {
+    fetch(url, {cache: "no-store"})
+      .then(function (r) {
+        if (r.status === 403) { expired(); return null; }
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
+      .then(function (data) { if (data) show(data); })
+      .catch(function () { timer = setTimeout(load, 2000); });
+  }
+  load();
+})();
+</script>
+</body>
+</html>

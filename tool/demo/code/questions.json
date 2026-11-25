@@ -1,0 +1,167 @@
+{
+  "slug": "code",
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-11-25T09:23:27+00:00",
+  "objectives": [
+    {
+      "text": "Explain why `main.py` calls `remove_implausible` before `remove_spikes`, and predict how a 999 reading would be handled if the order were reversed."
+    },
+    {
+      "text": "Predict how `remove_spikes` treats the first and last readings, and readings whose neighbour is already missing, and justify these edge-case choices."
+    },
+    {
+      "text": "Explain the assumption of evenly spaced hourly readings behind `fill_gaps`, and predict its output when timestamps are absent from the CSV."
+    },
+    {
+      "text": "Explain how `heatwaves` handles runs ending the data or broken by days skipped in `daily_summaries`, and identify behaviours the unit tests leave untested."
+    }
+  ],
+  "questions": [
+    {
+      "objective_index": 0,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "Suppose you swapped these two calls in `main.py`. How would an isolated `999` between readings of `20.0` and `21.0` then be handled?",
+      "code": "implausible = remove_implausible(readings)\nspikes = remove_spikes(readings)",
+      "options": [
+        "It is blanked by `remove_spikes` and counted as a spike, not implausible",
+        "Both neighbours `20.0` and `21.0` are also blanked as spikes",
+        "It is blanked twice, so it is counted in both totals",
+        "It survives `remove_spikes` and later skews that day's high to `999`"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "`999` differs by more than `MAX_JUMP` from both neighbours, so `remove_spikes` blanks it first. `remove_implausible` then skips it because it only checks values that are not `None`. The neighbours are not blanked: each differs by only 1 °C from its other neighbour, so neither jumps from both."
+    },
+    {
+      "objective_index": 0,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "Suppose `main.py` ran `remove_spikes` before `remove_implausible` on hourly temperatures `999.0`, `20.0`, `999.0`, `21.0`. Which statements about the outcome are true?",
+      "code": "",
+      "options": [
+        "The final temperatures match those from your original order",
+        "The second `999.0` is blanked and counted as a spike",
+        "The genuine `20.0` reading is blanked as a spike",
+        "`fill_gaps` later restores the `20.0` by interpolation",
+        "Both `999.0` values are still counted as implausible"
+      ],
+      "correct": [
+        2,
+        4
+      ],
+      "explanation": "`20.0` differs by more than 8 °C from both `999.0` neighbours, so it is blanked as a spike. The second `999.0` now has a missing neighbour and is skipped, so `remove_implausible` catches both. `fill_gaps` leaves gaps at the start of the data unfilled."
+    },
+    {
+      "objective_index": 1,
+      "position": 0,
+      "kind": "maq",
+      "prompt": "Your `remove_spikes` checks each reading against its two neighbours. Which statements about how it treats edge cases are true?",
+      "code": "for i in range(1, len(readings) - 1):\n    prev, cur, nxt = readings[i - 1].temp, readings[i].temp, readings[i + 1].temp\n    if None in (prev, cur, nxt):\n        continue",
+      "options": [
+        "The first and last readings are never blanked as spikes, however extreme",
+        "A spike next to a missing reading is kept and reaches the daily summary",
+        "A spike next to a missing reading survives, but `fill_gaps` later overwrites it",
+        "A spike next to a missing reading is judged against its one remaining neighbour",
+        "The first reading is compared with the last reading instead"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "The loop runs from index 1 to `len(readings) - 2`, so the endpoints are never tested, and `None in (prev, cur, nxt)` skips the check entirely. A value that survives is not `None`, so `fill_gaps` never touches it and it can distort that day's high or low."
+    },
+    {
+      "objective_index": 1,
+      "position": 1,
+      "kind": "mcq",
+      "prompt": "Your `remove_spikes` runs on hourly temperatures `20.0`, `None`, `35.0`, `21.0`, `20.5`. What happens to the `35.0` reading, and why?",
+      "code": "if None in (prev, cur, nxt):\n    continue\nif abs(cur - prev) > max_jump and abs(cur - nxt) > max_jump:\n    readings[i].temp = None",
+      "options": [
+        "It is kept, because one neighbour is missing so it is skipped",
+        "It is kept, because only the first and last readings are checked",
+        "It is blanked, because it jumps over 8 °C from `21.0`",
+        "It is blanked, because a missing neighbour counts as a large jump"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Your `None in (prev, cur, nxt)` check skips any reading with a missing neighbour, so `35.0` survives despite jumping 14 °C from `21.0`. Your rule needs both neighbours to differ by over `max_jump`, so judging against `21.0` alone never happens."
+    },
+    {
+      "objective_index": 2,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "Your CSV has hourly temperatures `10.0` at 01:00 and `16.0` at 04:00, with the 02:00 and 03:00 rows absent entirely. What does `fill_gaps` do?",
+      "code": "",
+      "options": [
+        "Leaves a three-hour gap marked missing in place",
+        "Nothing, as there is no `None` between the two readings",
+        "Fills `13.0` midway, treating the gap as one missing reading",
+        "Inserts `12.0` and `14.0` at 02:00 and 03:00"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Your `fill_gaps` only looks for runs of `None` in list positions, assuming one reading per hour; it never inspects timestamps. Absent rows produce no `None` entries, so nothing is inserted or interpolated and the gap silently stays."
+    },
+    {
+      "objective_index": 2,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "Your CSV has temperatures `10.0` at 01:00, blank at 02:00 and `16.0` at 05:00; the 03:00 and 04:00 rows are absent. Which statements about `fill_gaps` are true?",
+      "code": "",
+      "options": [
+        "The absent 03:00 and 04:00 rows are created and filled",
+        "The 02:00 reading becomes `13.0` rather than the time-correct `12.0`",
+        "The run counts as one missing reading, so it is within `max_gap`",
+        "The 02:00 reading stays missing because the real gap exceeds three hours",
+        "The interpolation fraction is weighted by the neighbouring timestamps"
+      ],
+      "correct": [
+        1,
+        2
+      ],
+      "explanation": "Your `fill_gaps` works on list positions, not timestamps. It sees one `None` between `10.0` and `16.0`, so the run is within `max_gap` and is filled at the midpoint, `13.0`. It never creates rows, never checks the real elapsed time and never weights by timestamps."
+    },
+    {
+      "objective_index": 3,
+      "position": 0,
+      "kind": "maq",
+      "prompt": "Consider your `heatwaves` function and its unit tests. Which statements about its behaviour and test coverage are true?",
+      "code": "",
+      "options": [
+        "A run reaching the end of the data is lost unless a cool day follows",
+        "A hot day straight after a missing date starts a fresh run",
+        "No test checks that a high of exactly `27.0` counts as hot",
+        "A hot day dropped by `daily_summaries` for too few readings splits a hot run",
+        "A skipped date is ignored, so the hot days either side still join one run",
+        "No test checks a heatwave that runs up to the last summary"
+      ],
+      "correct": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "`follows` requires a one-day difference, so a date skipped in `daily_summaries` breaks the run, and `run = [s] if hot` restarts it. The final check after the loop keeps end-of-data runs, and `test_run_at_end` covers this. Every hot test day is above 27, so the `>=` boundary is untested."
+    },
+    {
+      "objective_index": 3,
+      "position": 1,
+      "kind": "mcq",
+      "prompt": "Your `heatwaves` receives summaries with highs of 28 °C on 14, 15, 17, 18 and 19 July; 16 July was skipped by `daily_summaries`. What does it return?",
+      "code": "",
+      "options": [
+        "An empty list, as the run never ends on a cool day",
+        "Two heatwaves, 14 to 15 July and 17 to 19 July",
+        "One heatwave, 17 to 19 July",
+        "One heatwave, 14 to 19 July"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "The 16 July gap fails the `follows` check, so the two-day run is discarded and a fresh run starts on 17 July. That run reaches the last summary and is still recorded by the final `len(run) >= min_days` check after the loop. Skipped days are not bridged."
+    }
+  ]
+}

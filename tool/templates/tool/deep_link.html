@@ -1,0 +1,13 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>Add Aletheia</h1>
+<p class="muted">Give this activity a title. You'll choose its settings when you first open it.</p>
+<form method="post">
+  {% csrf_token %}
+  <div class="field">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" value="Aletheia" required maxlength="255" autofocus>
+  </div>
+  <div class="actions"><button class="button" type="submit">Add to course</button></div>
+</form>
+{% endblock %}

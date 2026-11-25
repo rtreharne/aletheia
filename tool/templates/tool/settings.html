@@ -1,0 +1,40 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>{% if assignment.configured %}Settings{% else %}Set up{% endif %}</h1>
+<p class="muted">Each student uploads their work. Aletheia writes learning objectives from it and your brief, then tests each objective in turn with timed single-answer and multiple-answer questions. A wrong answer earns another question on the same objective before moving on.</p>
+<form method="post">
+  {% csrf_token %}
+  {% for field in form %}
+    {% if field.name == "objective_count" or field.name == "seconds_per_question" %}<div class="row">{% endif %}
+    <div class="field{% if field.field.widget.input_type == 'checkbox' %} check{% endif %}" id="field-{{ field.name }}">
+      {% if field.field.widget.input_type == 'checkbox' %}
+      <label for="{{ field.id_for_label }}">{{ field }} {{ field.label }}</label>
+      {% else %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {% endif %}
+      {% if field.help_text %}<div class="help">{{ field.help_text }}</div>{% endif %}
+      {{ field.errors }}
+    </div>
+    {% if field.name == "retries_per_objective" or field.name == "max_attempts" %}</div>{% endif %}
+  {% endfor %}
+  <div class="actions">
+    <button class="button" type="submit">Save</button>
+    {% if assignment.configured %}<a href="{% url 'assignment' assignment.pk %}">Cancel</a>{% endif %}
+  </div>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+  // Show the time setting that applies: per question, or for the whole quiz.
+  (function () {
+    var each = document.getElementById("id_time_each_question");
+    function update() {
+      document.getElementById("field-seconds_per_question").hidden = !each.checked;
+      document.getElementById("field-time_limit_minutes").hidden = each.checked;
+    }
+    each.addEventListener("change", update);
+    update();
+  })();
+</script>
+{% endblock %}

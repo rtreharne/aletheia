@@ -1,0 +1,45 @@
+# Why did Peel repeal the Corn Laws in 1846?
+
+HIS2041 Britain in the Age of Reform, 1815–1867 · Essay 2 · 1,500 words
+
+The repeal of the Corn Laws in June 1846 split the Conservative Party, ended Sir Robert Peel's career as Prime Minister and has been read ever since as a turning point in the history of free trade. Explaining why Peel acted is harder than it first appears. The Anti-Corn Law League had campaigned for repeal for eight years, the Irish potato blight gave Peel an urgent reason to open the ports, and Peel himself had been moving towards freer trade since his budgets of 1842 and 1845. This essay argues that the Irish famine supplied the occasion for repeal but not its cause. Peel repealed the Corn Laws because he had already become convinced, on economic and political grounds, that protection was indefensible, and because he believed that a timely concession by the landed governing class would preserve its authority better than a long defence of a measure the country increasingly saw as a tax on bread.
+
+## The Corn Laws and the case against them
+
+The Corn Law of 1815 prohibited the import of foreign wheat until the domestic price reached 80 shillings a quarter. It was replaced in 1828 by a sliding scale, under which the duty fell as the home price rose, and Peel himself modified the scale again in 1842. Defenders of the laws argued that they protected the agricultural interest, which still employed more people than any other sector, and that they kept Britain independent of foreign suppliers in wartime. Critics, drawing on Ricardo, argued that protection kept food prices and therefore wages artificially high, made British manufactures less competitive and invited foreign governments to retaliate against British exports. Britain was not alone in moving towards free trade in these decades, and Kindleberger (1975) places repeal within a wider European shift in which economic ideas mattered at least as much as the interests of particular groups.
+
+By the 1840s the critics had organisation as well as argument. The Anti-Corn Law League, founded in Manchester in 1838 and led by Richard Cobden and John Bright, raised large sums, distributed millions of tracts and contested by-elections. Its strategy of registering supporters through the forty-shilling freehold qualification threatened to change the electoral balance in the counties, and its methods of mass petitioning and moral campaigning owed much to the earlier movement against slavery (Morgan, 2009). Yet the League never won over the House of Commons. In 1845 a majority of MPs were still protectionists, and the League's own leaders privately doubted that repeal would come within a decade. McKeown (1989) shows that theories which explain trade policy by the economic interests of voters or lobbies fit the passage of repeal poorly: the decisive votes were cast by Conservative MPs whose constituents gained nothing from it. The League made repeal thinkable; it did not make it happen.
+
+## Peel's conversion
+
+Peel's position had been shifting for several years before the famine. His 1842 budget reintroduced income tax so that he could reduce more than seven hundred import duties, and in 1845 he abolished duties on raw cotton and many other goods. These reforms rested on the view that cheap imports of raw materials and food would encourage manufacturing, raise employment and so reduce the social unrest of the "hungry forties". Peel's own papers show that by late 1844 he regarded the Corn Laws as the last major obstacle to this programme and doubted that they could be defended at the next election (Gash, 1972). Irwin (1989) traces this conversion to changes in Peel's understanding of political economy, in particular his abandonment of the view that wages rise and fall with the price of bread, which had been one of the strongest arguments for protection. In this sense repeal was the logical conclusion of policies he was already following.
+
+Peel was also influenced by a political argument. He feared that if the aristocracy continued to defend a law that appeared to protect rents at the expense of the poor, it would strengthen demands for further parliamentary reform and weaken the legitimacy of the existing constitution. Repeal, in his view, would show that Parliament could respond to the national interest rather than to the interests of landowners. This was a conservative argument for change: concede the Corn Laws to protect the institutions that mattered more. Lusztig (1995) develops this interpretation, arguing that Peel sacrificed a policy in order to preserve the institutional position of the landed class.
+
+## The famine as occasion
+
+The potato blight reached Ireland in the autumn of 1845 and destroyed around a third of that year's crop; the failure of 1846 was far worse. Peel responded by arranging the secret purchase of Indian corn from America and by proposing to suspend the Corn Laws. When his Cabinet would not agree, he resigned in December 1845, only to return when Lord John Russell could not form a government. He then proposed not a temporary suspension but the phased abolition of the duties over three years.
+
+The famine explains the timing of repeal, but it cannot explain its form. Opening the ports temporarily would have met the immediate crisis, and repeal did little to relieve Ireland, where the problem was not the price of grain but the inability of the poor to buy any food at all. Its longer-term effects on Ireland were, if anything, harmful: by reducing the protection enjoyed by Irish grain, repeal encouraged a shift from tillage to pasture that reduced the demand for labour and added to emigration (O'Rourke, 1994). Peel's insistence on permanent repeal, at the cost of splitting his party, shows that he was using the crisis to carry out a policy he had already decided upon. As he told the Commons, he could not ask for the suspension of a law in an emergency and then promise to restore it once the emergency had passed.
+
+## Conclusion
+
+Repeal resulted from the convergence of three forces: a decade of economic argument and agitation that had weakened the intellectual case for protection, Peel's own move towards free trade from 1842, and the Irish crisis that forced the issue in 1845–46. Of these, Peel's conviction was decisive. The League lacked the votes and the famine required only temporary measures; it was Peel who chose to turn an emergency into a permanent change of policy. The price was high. Two-thirds of Conservative MPs voted against their own leader, and the party did not form a majority government again for nearly thirty years. That Peel accepted this cost is the strongest evidence that, for him, repeal was a matter of principle rather than expediency. Whether the economic gains justified it is a separate question; for a quantitative assessment of who gained and who lost, see Irwin and Chepeliev (2021).
+
+## Reference list
+
+Gash, N. (1972) Sir Robert Peel: the life of Sir Robert Peel after 1830. London: Longman.
+
+Irwin, D.A. (1989) 'Political economy and Peel's repeal of the Corn Laws', Economics & Politics, 1(1), pp. 41–59. Available at: https://doi.org/10.1111/j.1468-0343.1989.tb00004.x
+
+Irwin, D.A. and Chepeliev, M.G. (2021) 'The economic consequences of Sir Robert Peel: a quantitative assessment of the repeal of the Corn Laws', The Economic Journal, 131(640), pp. 3322–3337. Available at: https://doi.org/10.1093/ej/ueab029
+
+Kindleberger, C.P. (1975) 'The rise of free trade in Western Europe, 1820–1875', The Journal of Economic History, 35(1), pp. 20–55. Available at: https://doi.org/10.1017/S0022050700094298
+
+Lusztig, M. (1995) 'Solving Peel's puzzle: repeal of the Corn Laws and institutional preservation', Comparative Politics, 27(4), p. 393. Available at: https://doi.org/10.2307/422226
+
+McKeown, T.J. (1989) 'The politics of Corn Law repeal and theories of commercial policy', British Journal of Political Science, 19(3), pp. 353–380. Available at: https://doi.org/10.1017/S0007123400005524
+
+Morgan, S. (2009) 'The Anti-Corn Law League and British anti-slavery in transatlantic perspective, 1838–1846', The Historical Journal, 52(1), pp. 87–107. Available at: https://doi.org/10.1017/S0018246X08007322
+
+O'Rourke, K. (1994) 'The repeal of the Corn Laws and Irish emigration', Explorations in Economic History, 31(1), pp. 120–138. Available at: https://doi.org/10.1006/exeh.1994.1005

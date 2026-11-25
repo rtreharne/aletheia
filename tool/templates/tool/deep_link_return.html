@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Aletheia</title></head>
+<body>
+<form id="return" method="post" action="{{ return_url }}">
+  <input type="hidden" name="JWT" value="{{ jwt }}">
+  <noscript><button type="submit">Continue</button></noscript>
+</form>
+<script>document.getElementById("return").submit();</script>
+</body>
+</html>

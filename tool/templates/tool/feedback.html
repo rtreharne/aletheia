@@ -1,0 +1,15 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<p class="small"><a href="{% url 'attempt' assignment.pk attempt.pk %}">← Alignment</a></p>
+<h1>{{ assignment.title }}</h1>
+<p class="muted">
+  {% if times_left %}You left the page {% if times_left == 1 %}once{% else %}{{ times_left }} times{% endif %} while answering.{% else %}You stayed on the page throughout.{% endif %}
+</p>
+
+<h2>Your answers</h2>
+{% if questions %}
+  {% include "tool/_review.html" with instructor=False %}
+{% else %}
+  <p class="muted">No questions were asked.</p>
+{% endif %}
+{% endblock %}

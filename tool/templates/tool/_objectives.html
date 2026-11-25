@@ -1,0 +1,22 @@
+{% load aletheia %}{% comment %}Objectives button + overlay. Needs `objectives`; optional `current_objective` and `timer_running`.{% endcomment %}
+<button type="button" class="link-button" id="objectives-open" aria-haspopup="dialog">Objectives</button>
+<dialog class="overlay" id="objectives" aria-labelledby="objectives-title">
+  <div class="overlay-head">
+    <h2 id="objectives-title">Learning objectives</h2>
+    <button type="button" class="link-button" id="objectives-close">Close</button>
+  </div>
+  <ol class="objective-list">
+    {% for o in objectives %}
+      <li{% if forloop.counter0 == current_objective %} class="current" aria-current="step"{% endif %}>{{ o.text|scripts }}</li>
+    {% endfor %}
+  </ol>
+  {% if timer_running %}<p class="help italic">The timer keeps running while this is open.</p>{% endif %}
+</dialog>
+<script>
+(function () {
+  var d = document.getElementById("objectives");
+  document.getElementById("objectives-open").addEventListener("click", function () { d.showModal(); });
+  document.getElementById("objectives-close").addEventListener("click", function () { d.close(); });
+  d.addEventListener("click", function (e) { if (e.target === d) d.close(); });
+})();
+</script>

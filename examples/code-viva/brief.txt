@@ -1,0 +1,15 @@
+Assignment 2: Weather station pipeline (Python, individual)
+
+Write a Python program that reads a CSV of hourly readings from a weather station, cleans the data, and reports daily summaries and heatwaves.
+
+Your program must:
+- load readings from a CSV with columns time, temp and humidity, skipping rows it cannot use;
+- treat implausible temperatures (outside −40 to 50 °C) and isolated spikes as missing;
+- fill short gaps (up to 3 hours) by linear interpolation, and leave longer gaps missing;
+- summarise each day that has enough readings (minimum, maximum and mean temperature);
+- report heatwaves: three or more consecutive days with a maximum at or above a threshold (default 27 °C);
+- include unit tests for the cleaning and summary functions.
+
+Submit a .zip of your project.
+
+Viva focus: whether the student can explain and predict the behaviour of their own cleaning and heatwave logic. That includes the order of the cleaning steps, what happens at the edges of the data (the first and last readings, gaps at the start or end, days with too few readings), the assumptions behind their interpolation, and why their tests cover the cases they do. Do not ask about Python syntax for its own sake.

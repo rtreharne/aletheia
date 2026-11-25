@@ -1,0 +1,472 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aletheia · check that students understand the work they hand in</title>
+<meta name="description" content="Aletheia asks each student short, timed questions about their own submitted work, inside your LMS, to check that they understand it. LTI 1.3 for Canvas, Moodle and other platforms.">
+<link rel="icon" href="{% static 'tool/icons/favicon.ico' %}" sizes="any">
+<link rel="icon" type="image/png" href="{% static 'tool/icons/favicon-32.png' %}" sizes="32x32">
+<link rel="apple-touch-icon" href="{% static 'tool/icons/apple-touch-icon.png' %}">
+<link rel="stylesheet" href="{% static 'tool/aletheia.css' %}">
+<link rel="stylesheet" href="{% static 'tool/landing.css' %}">
+<script>
+  // Scroll reveals hide content until it's in view, so only opt in when they can run.
+  if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.documentElement.classList.add("js-reveal");
+  }
+</script>
+</head>
+<body class="landing">
+
+<header class="topbar" id="topbar" aria-label="Aletheia">
+  <a class="mark" href="#">ALETHEIA</a>
+  <nav aria-label="Sections">
+    <a href="#why">Why</a>
+    <a href="#how">How it works</a>
+    <a href="#try">Examples</a>
+    <a href="#lms">Integration</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="button small" href="#contact" data-book>Book a call</a>
+</header>
+
+<section class="hero" id="hero">
+  <h1 class="wordmark" aria-label="Aletheia"><span aria-hidden="true">{% for letter in "ALETHEIA" %}<span style="--i: {{ forloop.counter0 }}">{{ letter }}</span>{% endfor %}</span></h1>
+  <hr class="rule">
+  <p class="lede">Check that students understand the work they hand in.</p>
+  <p class="sublede">Aletheia asks each student short, timed questions about their own submission, inside your LMS.</p>
+  <p class="hero-links"><a class="button" href="#try">Try an example</a><a class="link-button" href="#contact" data-book>Book a call</a></p>
+  <a class="scroll-down" href="#why" aria-label="Next: why Aletheia"><svg viewBox="0 0 24 14" width="24" height="14" aria-hidden="true"><path d="M1 1l11 11L23 1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></a>
+</section>
+
+<main>
+
+<section class="band" id="why" aria-labelledby="why-title">
+  <div class="wrap narrow">
+    <h2 id="why-title" class="eyebrow">Why Aletheia</h2>
+    <p class="statement">Submitted work no longer proves that a student understands it.</p>
+    <p>Generative AI can produce fluent essays, reports and code in seconds. AI detectors cannot reliably tell who wrote what, and a false accusation harms the student and the institution.</p>
+    <p>The dependable test has always been to ask: <em>can you explain what you wrote?</em> An oral examination does this well, but it costs hours of staff time for every cohort.</p>
+    <p>Aletheia asks that question of every student, in about ten minutes, as part of handing in. It does not guess who wrote the work. It gives each student the chance to show they understand it, and gives you evidence to weigh alongside your own judgement.</p>
+  </div>
+</section>
+
+<section class="band" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <h2 id="how-title" class="eyebrow">How it works</h2>
+    <ol class="steps">
+      <li>
+        <h3>Hand in</h3>
+        <p>The student uploads their work in your course, checks the preview and agrees to your AI policy. Where your LMS supports it, the file also goes into your gradebook as a normal submission.</p>
+      </li>
+      <li>
+        <h3>Objectives</h3>
+        <p>Aletheia reads the submission and your brief, and writes learning objectives for that specific piece of work.</p>
+      </li>
+      <li>
+        <h3>Questions</h3>
+        <p>The student answers short, timed questions on each objective. A wrong answer brings a second question on the same objective. There is no going back.</p>
+      </li>
+      <li>
+        <h3>Alignment</h3>
+        <p>The student sees a score for each objective, with explanations. You see every answer, how long each took and whenever they left the page.</p>
+      </li>
+    </ol>
+
+    <div class="q-demo" id="q-demo">
+      <div class="q-demo-text">
+        <p class="q-demo-label">Step 3, as the student sees it</p>
+        <h3>One question at a time</h3>
+        <p>The line along the top is the time left. When it runs out, whatever is selected is submitted, and there is no going back. You see how long each answer took. The student doesn't.</p>
+        <button type="button" class="link-button" id="q-demo-replay" hidden>Play again</button>
+      </div>
+      <div class="q-card" aria-hidden="true">
+        <span class="q-timer"><span></span></span>
+        <p class="q-progress">OBJECTIVE 1 / 5</p>
+        <p class="q-prompt">You argue the Irish famine was the occasion, not the cause, of repeal. What evidence do you use to support this distinction?</p>
+        <p class="q-hint">Select one.</p>
+        <ol class="q-options">
+          <li data-pick>Peel insisted on permanent repeal when temporary suspension would have met the crisis</li>
+          <li>Peel's Cabinet unanimously backed repeal once news of the blight arrived</li>
+          <li data-glance>Repeal lowered grain prices enough to end starvation in Ireland within two years</li>
+          <li>The famine struck before the League had won a majority in the Commons</li>
+        </ol>
+        <div class="q-foot"><span class="q-next">Next</span><span class="q-time">Answered in 9.6s · recorded for the instructor</span></div>
+      </div>
+    </div>
+
+    <div class="room-flow" role="group" aria-labelledby="room-title">
+      <div class="room-intro">
+        <p class="room-tag"><span>Optional</span> Before and during step 3</p>
+        <h3 id="room-title">In the room</h3>
+        <p>Students can hand in whenever they like, but their questions open only in a scheduled, invigilated session, with a word shown on the screen in the room and nowhere else.</p>
+        <figure class="projector">
+          <div class="projector-screen" aria-hidden="true">
+            <span class="projector-label">ALETHEIA · ROOM WORD</span>
+            <span class="projector-word" id="projector-word">harbour</span>
+            <span class="projector-track"><span id="projector-bar"></span></span>
+          </div>
+          <figcaption>On the projector. A new word every 20 seconds.</figcaption>
+        </figure>
+      </div>
+      <ol class="room-steps">
+        <li>
+          <h4>On the screen</h4>
+          <p>Open the room word from your dashboard and put it on the projector.</p>
+        </li>
+        <li>
+          <h4>To begin</h4>
+          <p>Students type the word they can see to open their questions. Without it, they can't start.</p>
+        </li>
+        <li>
+          <h4>Along the way</h4>
+          <p>Once or twice, between objectives, they're asked again and have 10 seconds to type it. A miss is flagged for you, and the quiz carries on.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="try" aria-labelledby="try-title">
+  <div class="wrap">
+    <h2 id="try-title" class="eyebrow">Try an example</h2>
+    <p class="intro">Six real pieces of coursework, each set up differently. Read the brief and the work, then answer the questions as the student who wrote it. Each takes under ten minutes. Afterwards, see exactly what an instructor sees.</p>
+    <div class="examples">
+      {% for ex in examples %}
+      <article class="example">
+        <p class="discipline">{{ ex.discipline }}</p>
+        <h3>{{ ex.title }}</h3>
+        <p class="kind">{{ ex.kind }} · {{ ex.file_kind }}</p>
+        <ul class="chips">{% for chip in ex.chips %}<li>{{ chip }}</li>{% endfor %}</ul>
+        <p class="highlight">{{ ex.highlight }}</p>
+        <div class="example-actions">
+          <button type="button" class="link-button" data-dialog="brief-{{ ex.slug }}">Brief</button>
+          <a class="link-button" href="{% url 'demo_file' ex.slug %}" target="_blank" rel="noopener">{% if ex.file_kind == "ZIP" %}The code{% else %}The work{% endif %}</a>
+          {% if ex.ready %}
+          <form method="post" action="{% url 'demo_start' ex.slug %}" target="_blank">{% csrf_token %}<button class="button" type="submit">Try it</button></form>
+          {% else %}
+          <span class="muted small">Coming soon</span>
+          {% endif %}
+        </div>
+      </article>
+      <dialog class="overlay" id="brief-{{ ex.slug }}" aria-labelledby="brief-{{ ex.slug }}-title">
+        <div class="overlay-head">
+          <h2 id="brief-{{ ex.slug }}-title">{{ ex.discipline }}: the brief</h2>
+          <button type="button" class="link-button dialog-close">Close</button>
+        </div>
+        <div class="brief">{{ ex.brief|linebreaks }}</div>
+        <p class="eyebrow small-eyebrow">Settings</p>
+        <ul class="chips">{% for chip in ex.chips %}<li>{{ chip }}</li>{% endfor %}</ul>
+        <p class="help">The work: <a href="{% url 'demo_file' ex.slug %}" target="_blank" rel="noopener">{{ ex.file }}</a> ({{ ex.file_size|filesizeformat }}).</p>
+        {% if ex.ready %}<form class="dialog-try" method="post" action="{% url 'demo_start' ex.slug %}" target="_blank">{% csrf_token %}<button class="button" type="submit">Try it</button></form>{% endif %}
+      </dialog>
+      {% endfor %}
+    </div>
+    <p class="help fine">Each example opens in a new tab. Its questions were written in advance; in your course, they are written from each student's own submission when they hand it in.</p>
+  </div>
+</section>
+
+<section class="band" id="settings" aria-labelledby="set-title">
+  <div class="wrap narrow">
+    <h2 id="set-title" class="eyebrow">What you control</h2>
+    <dl class="settings-list">
+      <dt>Brief</dt><dd>What the assignment asked for, and what the objectives should focus on.</dd>
+      <dt>Objectives</dt><dd>Between 1 and 10 per submission.</dd>
+      <dt>Questions</dt><dd>How many correct answers clear an objective, and how many retries follow a wrong one.</dd>
+      <dt>Time</dt><dd>A countdown for each question, or one limit for the whole check. Answer times are shown to you, never to students.</dd>
+      <dt>Code</dt><dd>Accept source files, notebooks and .zip projects, with questions that quote the student's own code.</dd>
+      <dt>Attempts</dt><dd>One, several or unlimited.</dd>
+      <dt>AI policy</dt><dd>Your generative AI policy, which students must agree to before handing in.</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="band" id="lms" aria-labelledby="lms-title">
+  <div class="wrap">
+    <h2 id="lms-title" class="eyebrow">Integration</h2>
+    <p class="statement narrow-text">LTI 1.3 only. Install it once and it runs inside your LMS.</p>
+    <p class="narrow-text">No separate accounts or logins. Students open Aletheia from an assignment, like any other.</p>
+    <div class="lms-grid">
+      <div>
+        <h3>Canvas</h3>
+        <p>In Admin → Developer Keys, choose + Developer Key → + LTI Registration and paste:</p>
+        <p class="url"><code>{{ canvas_url }}</code></p>
+        <p class="muted small">Then create an assignment with the submission type External Tool.</p>
+      </div>
+      <div>
+        <h3>Moodle</h3>
+        <p>In Site administration → Plugins → External tool → Manage tools, paste this URL and choose Add LTI Advantage:</p>
+        <p class="url"><code>{{ moodle_url }}</code></p>
+        <p class="muted small">Then add an External tool activity to a course.</p>
+      </div>
+      <div>
+        <h3>Other platforms</h3>
+        <p>Any LTI 1.3 platform can register Aletheia with these addresses:</p>
+        <dl class="urls">
+          {% for label, url in lti_urls %}<dt>{{ label }}</dt><dd><code>{{ url }}</code></dd>{% endfor %}
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="grading" aria-labelledby="grading-title">
+  <div class="wrap narrow">
+    <h2 id="grading-title" class="eyebrow">Your grading</h2>
+    <p class="statement">Your marking stays exactly as it is.</p>
+    <ul class="plain-list">
+      <li>Every upload is kept with the student's answers, and where your LMS supports it, handed in to your gradebook as a normal submission.</li>
+      <li>Aletheia never sets, changes or clears a grade.</li>
+      <li>Alignment, answer times and the integrity log stay in Aletheia, for you to weigh.</li>
+      <li>The class list comes from your course, so you can see who has not yet handed in.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="band" id="pricing" aria-labelledby="pricing-title">
+  <div class="wrap narrow">
+    <h2 id="pricing-title" class="eyebrow">Pricing</h2>
+    <p class="price"><span class="amount">£5</span> <span class="per">per student, per academic year, plus VAT</span></p>
+    <p>For example, a department where 250 students hand in during the year pays £1,250 + VAT: £500 when you order, and £750 after 31 August.</p>
+
+    <dl class="settings-list terms">
+      <dt>Who counts</dt>
+      <dd>Each student who hands in at least one attempt between 1 September and 31 August. A student counts once, however many courses and assignments they use it in. Students who never hand in are not charged.</dd>
+      <dt>Minimum</dt>
+      <dd>100 students (£500 + VAT) per department, per academic year, whenever in the year you start.</dd>
+      <dt>Billing</dt>
+      <dd>The minimum is invoiced when you order. Students above 100 are invoiced after 31 August, at £5 each. Invoices are payable within 30 days, and purchase orders are accepted.</dd>
+      <dt>Attempts</dt>
+      <dd>Unlimited, within your own attempt limits, at no extra charge.</dd>
+      <dt>Included</dt>
+      <dd>Every feature, with no premium tier: code viva, room word, gradebook hand-in, class lists and the instructor dashboard. A setup call, email support with a reply by the end of the next working day, and a data processing agreement.</dd>
+      <dt>Renewal</dt>
+      <dd>None. Each academic year is a new order, so there is nothing to cancel.</dd>
+    </dl>
+    <p class="help fine">Orders are under our <a href="{% url 'terms' %}">terms of service</a> and <a href="{% static 'tool/legal/aletheia-dpa-template.docx' %}">data processing agreement</a>. See our <a href="{% url 'privacy' %}">privacy notice</a> for how student data is handled.</p>
+
+    <div class="pilot">
+      <h3>Try it for a semester. No obligation.</h3>
+      <p>One course, up to 300 students, for one semester, free. Every feature and the setup call are included. At the end of the semester you decide whether to order. If you don't, you pay nothing.</p>
+      <a class="button" href="#contact" data-book>Book a call</a>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="contact" aria-labelledby="contact-title">
+  <div class="wrap narrow">
+    <h2 id="contact-title" class="eyebrow">Contact</h2>
+    <p class="statement">Talk to us about your course or institution.</p>
+    <p>Send a message, book a {{ meeting_minutes }}-minute video call, or both. Or email <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.</p>
+
+    <form class="contact" id="contact-form" method="post" action="{% url 'contact' %}" novalidate>
+      {% csrf_token %}
+      <div class="row">
+        <div class="field"><label for="c-name">Name</label><input type="text" id="c-name" name="name" autocomplete="name" required maxlength="120"></div>
+        <div class="field"><label for="c-email">Email</label><input type="email" id="c-email" name="email" autocomplete="email" required maxlength="254"></div>
+      </div>
+      <div class="field"><label for="c-institution">Institution <span class="muted">(optional)</span></label><input type="text" id="c-institution" name="institution" autocomplete="organization" maxlength="200"></div>
+      <div class="field"><label for="c-message">Message</label><textarea id="c-message" name="message" rows="5" maxlength="4000"></textarea></div>
+      <div class="field hp" aria-hidden="true"><label for="c-website">Website</label><input type="text" id="c-website" name="website" tabindex="-1" autocomplete="off"></div>
+
+      <div class="field check"><label for="c-call"><input type="checkbox" id="c-call"> Book a {{ meeting_minutes }}-minute video call <span class="muted">(optional)</span></label></div>
+      <div class="booking" id="booking" hidden>
+        <p class="help" id="tz-note"></p>
+        <div class="days" id="days" role="listbox" aria-label="Day"></div>
+        <div class="times" id="times" role="listbox" aria-label="Time"></div>
+        <p class="help" id="slot-chosen" aria-live="polite"></p>
+        <input type="hidden" name="meeting" id="c-meeting">
+      </div>
+
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+      <div class="actions"><button class="button" type="submit" id="c-send">Send</button></div>
+    </form>
+    <p class="notice" id="form-done" role="status" hidden></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot landing-foot">
+  <a class="mark" href="#" aria-label="Back to top">ALETHEIA</a>
+  <p class="muted small"><a href="{% url 'terms' %}">Terms</a> · <a href="{% url 'privacy' %}">Privacy</a> · <a href="{% static 'tool/legal/aletheia-dpa-template.docx' %}">Data processing agreement</a> · <a href="mailto:{{ contact_email }}">{{ contact_email }}</a></p>
+</footer>
+
+<script>
+// Scroll reveals: sections draw their heading rule, and the steps surface from a blur, once each.
+(function () {
+  if (!document.documentElement.classList.contains("js-reveal")) return;
+  var seen = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) { entry.target.classList.add("in"); seen.unobserve(entry.target); }
+    });
+  }, { threshold: 0.25 });
+  document.querySelectorAll(".band .wrap > .eyebrow, .steps").forEach(function (el) { seen.observe(el); });
+})();
+
+// How it works: a sample question answers itself once, when it comes into view.
+(function () {
+  var demo = document.getElementById("q-demo");
+  if (!demo) return;
+  var card = demo.querySelector(".q-card"), replay = document.getElementById("q-demo-replay");
+  var pick = card.querySelector("[data-pick]"), glance = card.querySelector("[data-glance]"), timers = [];
+  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function reset() {
+    timers.forEach(clearTimeout); timers = [];
+    card.className = "q-card";
+    [pick, glance].forEach(function (li) { li.className = ""; });
+    void card.offsetWidth;  // restart the timer line from full
+  }
+  function finish() {
+    card.className = "q-card ticking answered timed";
+    pick.className = "picked";
+    replay.hidden = false;
+  }
+  function play() {
+    reset();
+    replay.hidden = true;
+    card.classList.add("ticking");
+    at(1000, function () { glance.className = "glance"; });
+    at(1900, function () { glance.className = ""; pick.className = "glance"; });
+    at(2600, function () { pick.className = "picked"; card.classList.add("ready"); });
+    at(3600, function () { card.classList.add("answered"); });
+    at(4000, function () { card.classList.add("timed"); replay.hidden = false; });
+  }
+  replay.addEventListener("click", play);
+  if (!document.documentElement.classList.contains("js-reveal")) { finish(); return; }
+  var watch = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) { watch.disconnect(); play(); }
+  }, { threshold: 0.6 });
+  watch.observe(card);
+})();
+
+// How it works: the sample projector word changes each time its bar runs out.
+(function () {
+  var word = document.getElementById("projector-word"), bar = document.getElementById("projector-bar");
+  if (!word || !bar) return;
+  var words = ["harbour", "clover", "falcon", "glacier", "candle", "comet"], i = 0;
+  bar.addEventListener("animationiteration", function () {
+    i = (i + 1) % words.length;
+    word.classList.add("changing");
+    setTimeout(function () { word.textContent = words[i]; word.classList.remove("changing"); }, 300);
+  });
+})();
+(function () {
+  // The top bar appears once the hero has scrolled away, and stays out of the way over it.
+  var bar = document.getElementById("topbar"), hero = document.getElementById("hero");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      bar.classList.toggle("shown", !entries[0].isIntersecting);
+    }, { rootMargin: "-96px 0px 0px 0px" }).observe(hero);
+  } else {
+    bar.classList.add("shown");
+  }
+
+  // "Book a call" opens the contact form with the call picker ready.
+  document.querySelectorAll("[data-book]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      var box = document.getElementById("c-call");
+      if (!box.checked) { box.checked = true; box.dispatchEvent(new Event("change")); }
+    });
+  });
+
+  // Briefs open in a dialog.
+  document.querySelectorAll("[data-dialog]").forEach(function (button) {
+    var dialog = document.getElementById(button.dataset.dialog);
+    button.addEventListener("click", function () { dialog.showModal(); });
+    dialog.querySelector(".dialog-close").addEventListener("click", function () { dialog.close(); });
+    dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
+    var tryForm = dialog.querySelector(".dialog-try");
+    if (tryForm) tryForm.addEventListener("submit", function () { setTimeout(function () { dialog.close(); }, 0); });
+  });
+
+  // Booking: slots come from the server in UTC and are shown in the visitor's own time zone.
+  var form = document.getElementById("contact-form");
+  var call = document.getElementById("c-call"), booking = document.getElementById("booking");
+  var days = document.getElementById("days"), times = document.getElementById("times");
+  var chosenNote = document.getElementById("slot-chosen"), meeting = document.getElementById("c-meeting");
+  var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "your time zone";
+  var byDay = {}, order = [], loaded = false;
+
+  function dayKey(d) { return d.toLocaleDateString("en-CA"); }
+  function loadSlots() {
+    days.innerHTML = '<span class="muted small">Loading times…</span>';
+    fetch("{% url 'meet_slots' %}").then(function (r) { return r.json(); }).then(function (data) {
+      byDay = {}; order = [];
+      data.slots.forEach(function (iso) {
+        var d = new Date(iso), key = dayKey(d);
+        if (!byDay[key]) { byDay[key] = []; order.push(key); }
+        byDay[key].push(d);
+      });
+      document.getElementById("tz-note").textContent = "Times are shown in your time zone (" + tz + "). Calls are on weekdays, 10:00–16:00 UK time.";
+      renderDays(); loaded = true;
+    }).catch(function () { days.innerHTML = '<span class="muted small">Couldn\'t load times. Please try again.</span>'; });
+  }
+  function renderDays() {
+    days.innerHTML = "";
+    if (!order.length) { days.innerHTML = '<span class="muted small">No times are free at the moment. Send a message and we\'ll arrange one.</span>'; return; }
+    order.forEach(function (key, i) {
+      var d = byDay[key][0], b = document.createElement("button");
+      b.type = "button"; b.className = "slot day"; b.setAttribute("role", "option");
+      b.innerHTML = "<span>" + d.toLocaleDateString(undefined, { weekday: "short" }) + "</span>" + d.toLocaleDateString(undefined, { day: "numeric", month: "short" });
+      b.addEventListener("click", function () { selectDay(key, b); });
+      days.appendChild(b);
+      if (i === 0) selectDay(key, b);
+    });
+  }
+  function selectDay(key, button) {
+    days.querySelectorAll(".slot").forEach(function (x) { x.setAttribute("aria-selected", "false"); });
+    button.setAttribute("aria-selected", "true");
+    times.innerHTML = "";
+    byDay[key].forEach(function (d) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "slot time"; b.setAttribute("role", "option");
+      b.textContent = d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+      if (meeting.value === d.toISOString().replace(".000Z", "Z")) b.setAttribute("aria-selected", "true");
+      b.addEventListener("click", function () {
+        times.querySelectorAll(".slot").forEach(function (x) { x.setAttribute("aria-selected", "false"); });
+        b.setAttribute("aria-selected", "true");
+        meeting.value = d.toISOString().replace(".000Z", "Z");
+        chosenNote.textContent = "Chosen: " + d.toLocaleString(undefined, { weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }) + ". We'll email you to confirm.";
+      });
+      times.appendChild(b);
+    });
+  }
+  call.addEventListener("change", function () {
+    booking.hidden = !call.checked;
+    if (call.checked && !loaded) loadSlots();
+    if (!call.checked) { meeting.value = ""; chosenNote.textContent = ""; }
+  });
+
+  // Send with fetch; show the server's answer in place.
+  var errorBox = document.getElementById("form-error"), send = document.getElementById("c-send");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    errorBox.hidden = true;
+    if (!form.reportValidity()) return;
+    if (call.checked && !meeting.value) { showError("Choose a time for your call, or untick the box."); return; }
+    send.disabled = true; send.textContent = "Sending";
+    fetch(form.action, { method: "POST", body: new FormData(form), credentials: "same-origin" })
+      .then(function (r) { return r.json().then(function (data) { return { status: r.status, data: data }; }); })
+      .then(function (res) {
+        if (res.data.ok) {
+          form.hidden = true;
+          var done = document.getElementById("form-done");
+          done.textContent = res.data.message; done.hidden = false;
+          return;
+        }
+        var errors = res.data.errors || {}, messages = [];
+        Object.keys(errors).forEach(function (k) { messages = messages.concat(errors[k]); });
+        if (errors.meeting) { loaded = false; loadSlots(); meeting.value = ""; chosenNote.textContent = ""; }
+        showError(messages.join(" ") || "Something went wrong. Please try again.");
+      })
+      .catch(function () { showError("Couldn't send. Please check your connection and try again."); })
+      .then(function () { send.disabled = false; send.textContent = "Send"; });
+  });
+  function showError(text) { errorBox.textContent = text; errorBox.hidden = false; }
+})();
+</script>
+</body>
+</html>

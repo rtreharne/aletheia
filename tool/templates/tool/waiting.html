@@ -1,0 +1,17 @@
+{% extends "tool/base.html" %}
+{% block header_action %}{% include "tool/_objectives.html" %}{% endblock %}
+{% block content %}
+<div class="progress">OBJECTIVE {{ current_objective|add:1 }} / {{ objectives|length }}</div>
+<p class="prompt pulse">Preparing your next question</p>
+<p class="hint">The timer hasn't started.</p>
+{% endblock %}
+{% block scripts %}
+<script>
+  (function poll() {
+    fetch("{% url 'attempt_status' assignment.pk attempt.pk %}", {credentials: "same-origin"})
+      .then(function (r) { return r.json(); })
+      .then(function (d) { if (!d.waiting) location.reload(); else setTimeout(poll, 1000); })
+      .catch(function () { setTimeout(poll, 3000); });
+  })();
+</script>
+{% endblock %}

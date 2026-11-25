@@ -1,0 +1,33 @@
+{% extends "tool/base.html" %}
+{% block title %}Room word · Aletheia{% endblock %}
+{% block before %}
+<div class="timer" role="timer" aria-label="Time remaining"><span id="bar"></span></div>
+{% endblock %}
+{% block content %}
+<div class="progress">ROOM CHECK</div>
+<form method="post" action="{% url 'room_check' assignment.pk attempt.pk %}" id="check">
+  {% csrf_token %}
+  <p class="prompt">Type the word on the screen in the room.</p>
+  <div class="field">
+    <input type="text" name="room_word" id="room_word" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus aria-label="Room word">
+  </div>
+  <div class="actions"><button class="button" type="submit">Continue</button></div>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var remaining = {{ remaining|stringformat:"f" }}, total = {{ total }};
+  var form = document.getElementById("check"), bar = document.getElementById("bar"), sent = false;
+  function send() { if (!sent) { sent = true; form.submit(); } }
+  bar.style.transform = "scaleX(" + Math.max(0, remaining / total) + ")";
+  requestAnimationFrame(function () { requestAnimationFrame(function () {
+    bar.style.transition = "transform " + remaining + "s linear";
+    bar.style.transform = "scaleX(0)";
+  }); });
+  setTimeout(send, Math.max(0, remaining * 1000));
+  form.addEventListener("submit", function (e) { e.preventDefault(); send(); });
+  document.getElementById("room_word").focus();
+})();
+</script>
+{% endblock %}

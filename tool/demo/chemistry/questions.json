@@ -1,0 +1,173 @@
+{
+  "slug": "chemistry",
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-11-25T09:18:16+00:00",
+  "objectives": [
+    {
+      "text": "Explain why 1/t is proportional to the initial rate in the thiosulfate–starch clock method and the conditions this requires."
+    },
+    {
+      "text": "Interpret the ln(1/t) against ln[I<sup>−</sup>] plots to deduce reaction orders, and justify holding ionic strength constant with KCl."
+    },
+    {
+      "text": "Calculate the rate constant from the standard-run timing, thiosulfate amount and initial concentrations, accounting for the reaction stoichiometry."
+    },
+    {
+      "text": "Justify deriving the activation energy from a plot of ln(1/t) against 1/T, and evaluate how timing errors and catalytic impurities affect it."
+    }
+  ],
+  "questions": [
+    {
+      "objective_index": 0,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "In your clock method, why is 1/t proportional to the initial rate?",
+      "code": "",
+      "options": [
+        "The thiosulfate reacts directly with peroxodisulfate at a rate set by t",
+        "The total amount of iodine formed increases in proportion to the time t",
+        "The starch complex forms at a rate proportional to the iodide concentration",
+        "Each run forms the same fixed amount of iodine, with little reactant consumed"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Because the fixed amount of thiosulfate must be used up before colour appears, every run forms the same amount of iodine, so rate ≈ amount/t, provided only a small fraction (about 2.5%) of peroxodisulfate reacts. Thiosulfate reacts with iodine, not with peroxodisulfate."
+    },
+    {
+      "objective_index": 0,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "Your clock method treats 1/t as proportional to the initial rate. Which statements describe conditions this relies on?",
+      "code": "",
+      "options": [
+        "Only a small fraction of peroxodisulfate reacts before the colour appears",
+        "The iodine formed must accumulate freely as tri-iodide during timing",
+        "Thiosulfate must be in excess over peroxodisulfate throughout the run",
+        "The colour appears almost instantly once thiosulfate is exhausted",
+        "The reaction must be first order in thiosulfate",
+        "The same fixed amount of thiosulfate is used in every run"
+      ],
+      "correct": [
+        0,
+        3,
+        5
+      ],
+      "explanation": "A fixed thiosulfate amount means each time t marks the same iodine formed; only about 2.5% of peroxodisulfate reacted, and the colour delay is short. Thiosulfate in excess would stop the blue colour ever appearing, so the clock would never run."
+    },
+    {
+      "objective_index": 1,
+      "position": 0,
+      "kind": "maq",
+      "prompt": "Your ln(1/t) against ln[I<sup>−</sup>] plot had a gradient of 1.02 and you made up volumes with KCl. Which statements correctly reflect your reasoning?",
+      "code": "",
+      "options": [
+        "Without KCl, rising ionic strength would speed up the reaction and inflate the apparent order",
+        "The intercept of the log–log plot gives the activation energy directly",
+        "The gradient of the log–log plot gives the order with respect to iodide",
+        "Ions of the same sign react more slowly as ionic strength increases",
+        "KCl was added to keep the total volume constant only, not ionic strength",
+        "A gradient near one shows the rate doubles when [I<sup>−</sup>] doubles"
+      ],
+      "correct": [
+        0,
+        2,
+        5
+      ],
+      "explanation": "Since 1/t ∝ rate = k[I<sup>−</sup>]<sup>n</sup>…, the log–log gradient is n, so about one means rate doubles with [I<sup>−</sup>]. You used KCl to hold ionic strength constant because the salt effect speeds up reactions between like-charged ions, which would otherwise inflate the orders."
+    },
+    {
+      "objective_index": 1,
+      "position": 1,
+      "kind": "mcq",
+      "prompt": "Suppose you had varied the iodide volume but made up the remaining volume with water instead of KCl. How would your ln(1/t) against ln[I<sup>−</sup>] gradient most likely change?",
+      "code": "",
+      "options": [
+        "It would exceed one, because water dilutes the thiosulfate and lengthens every time",
+        "It would fall below one, because added ionic strength slows reactions between like-charged ions",
+        "It would stay at one, because ionic strength affects only the rate constant, not order",
+        "It would exceed one, because higher [I<sup>−</sup>] also raises ionic strength and speeds the reaction"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "In your report, runs with more KI would also have higher ionic strength, and the primary salt effect speeds reactions between same-sign ions, so 1/t would rise faster than [I<sup>−</sup>] alone predicts, inflating the gradient. Like-charged ions are accelerated, not slowed, by higher ionic strength."
+    },
+    {
+      "objective_index": 2,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "In your standard run at 295 K, 5.0 × 10<sup>−5</sup> mol of thiosulfate in 50.0 cm<sup>3</sup> was used up in 74 s. Which reasoning correctly gives your rate constant?",
+      "code": "",
+      "options": [
+        "I<sub>2</sub> formed equals the thiosulfate; rate/([S<sub>2</sub>O<sub>8</sub><sup>2−</sup>][I<sup>−</sup>]) gives 1.7 × 10<sup>−2</sup>",
+        "I<sub>2</sub> formed is half the thiosulfate; rate/([S<sub>2</sub>O<sub>8</sub><sup>2−</sup>][I<sup>−</sup>]) gives 8.5 × 10<sup>−3</sup>",
+        "I<sub>2</sub> formed is twice the thiosulfate; rate/([S<sub>2</sub>O<sub>8</sub><sup>2−</sup>][I<sup>−</sup>]) gives 3.4 × 10<sup>−2</sup>",
+        "I<sub>2</sub> formed is half the thiosulfate; rate/[I<sup>−</sup>]<sup>2</sup> gives 4.2 × 10<sup>−3</sup>"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Each I<sub>2</sub> consumes two S<sub>2</sub>O<sub>3</sub><sup>2−</sup>, so 2.5 × 10<sup>−5</sup> mol I<sub>2</sub> formed, giving 6.8 × 10<sup>−6</sup> mol dm<sup>−3</sup> s<sup>−1</sup>. Dividing by 0.0200 × 0.0400 gives 8.5 × 10<sup>−3</sup>. Your measured orders, not the 2I<sup>−</sup> stoichiometry, set the rate equation, so dividing by [I<sup>−</sup>]<sup>2</sup> is wrong."
+    },
+    {
+      "objective_index": 2,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "Your standard run at 295 K gave k = 8.5 × 10<sup>−3</sup> mol<sup>−1</sup> dm<sup>3</sup> s<sup>−1</sup>. Which statements about this calculation are correct?",
+      "code": "",
+      "options": [
+        "The initial rate equals the moles of thiosulfate divided by 74 s",
+        "Doubling the thiosulfate volume would roughly double the calculated k",
+        "The iodine concentration formed by the colour change was 5.0 × 10<sup>−4</sup> mol dm<sup>−3</sup>",
+        "Each mole of iodine formed consumes one mole of peroxodisulfate",
+        "The units of k follow from the reaction being second order overall",
+        "The rate is divided by [I<sup>−</sup>]<sup>2</sup> because the equation contains two iodide ions"
+      ],
+      "correct": [
+        2,
+        3,
+        4
+      ],
+      "explanation": "Half of 5.0 × 10<sup>−5</sup> mol thiosulfate gives 2.5 × 10<sup>−5</sup> mol I<sub>2</sub> in 50.0 cm<sup>3</sup>, i.e. 5.0 × 10<sup>−4</sup> mol dm<sup>−3</sup>. Your experimental rate equation, not the stoichiometry, sets the divisor [S<sub>2</sub>O<sub>8</sub><sup>2−</sup>][I<sup>−</sup>]. Doubling thiosulfate doubles t, leaving k unchanged."
+    },
+    {
+      "objective_index": 3,
+      "position": 0,
+      "kind": "maq",
+      "prompt": "Your Arrhenius plot of ln(1/t) against 1/T gave E<sub>a</sub> = 53 kJ mol<sup>−1</sup>. Which statements about this derivation and its errors are correct?",
+      "code": "",
+      "options": [
+        "Using 1/t works because 1/t is proportional to k when concentrations are fixed",
+        "A ±1 s timing error matters most at 325 K, where t is only 10 s",
+        "The gradient of the plot equals −E<sub>a</sub>/R, independent of the fixed amount of thiosulfate",
+        "Catalytic impurities shorten times but cannot change the gradient of the plot",
+        "Timing errors matter most at 285 K, because longer times accumulate more error",
+        "Using 1/t instead of k changes the gradient, so E<sub>a</sub> is only approximate"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "With identical mixtures at every temperature, 1/t is proportional to k, so constants only shift the intercept and the gradient still gives −E<sub>a</sub>/R. A ±1 s error is proportionally largest at the 10 s run. Impurities that shorten some runs unevenly can distort the gradient."
+    },
+    {
+      "objective_index": 3,
+      "position": 1,
+      "kind": "mcq",
+      "prompt": "Suppose trace Cu<sup>2+</sup> contamination shortened only your 285 K runs. How would this most likely affect the activation energy from your ln(1/t) against 1/T plot?",
+      "code": "",
+      "options": [
+        "It would be too low, because the low-temperature point rises and flattens the gradient",
+        "It would be unchanged, because 1/t stays proportional to k at each temperature",
+        "It would be unchanged, because a catalyst shifts every ln(1/t) value equally",
+        "It would be too high, because the low-temperature point rises and steepens the gradient"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "A shorter 285 K time raises ln(1/t) at the largest 1/T, making the gradient less negative, so −gradient × R gives a smaller E<sub>a</sub>. Contamination confined to one temperature cannot shift every point equally."
+    }
+  ]
+}

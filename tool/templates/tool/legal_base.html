@@ -1,0 +1,36 @@
+{% load static aletheia %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% block title %}{% endblock %} · Aletheia</title>
+<link rel="icon" href="{% static 'tool/icons/favicon.ico' %}" sizes="any">
+<link rel="icon" type="image/png" href="{% static 'tool/icons/favicon-32.png' %}" sizes="32x32">
+<link rel="apple-touch-icon" href="{% static 'tool/icons/apple-touch-icon.png' %}">
+<link rel="stylesheet" href="{% static 'tool/aletheia.css' %}">
+<link rel="stylesheet" href="{% static 'tool/landing.css' %}">
+</head>
+<body class="landing legal-page">
+
+<header class="topbar shown" aria-label="Aletheia">
+  <a class="mark" href="{% url 'home' %}">ALETHEIA</a>
+  <nav aria-label="Legal">
+    <a href="{% url 'home' %}#pricing">Pricing</a>
+    <a href="{% url 'terms' %}"{% if page == "terms" %} aria-current="page"{% endif %}>Terms</a>
+    <a href="{% url 'privacy' %}"{% if page == "privacy" %} aria-current="page"{% endif %}>Privacy</a>
+    <a href="{% url 'home' %}#contact">Contact</a>
+  </nav>
+</header>
+
+<main class="wrap narrow legal">
+  <h1>{% block heading %}{% endblock %}</h1>
+  <p class="muted small">Effective {{ legal.effective_date|or_placeholder:"effective date" }}. {{ legal.company_name|or_placeholder:"Company name" }}, a company registered in England and Wales, number {{ legal.company_number|or_placeholder:"company number" }}, registered office {{ legal.registered_address|or_placeholder:"registered address" }}.</p>
+  {% block body %}{% endblock %}
+</main>
+
+<footer class="foot landing-foot">
+  <a class="mark" href="{% url 'home' %}">ALETHEIA</a>
+  <p class="muted small"><a href="{% url 'terms' %}">Terms</a> · <a href="{% url 'privacy' %}">Privacy</a> · <a href="{% static 'tool/legal/aletheia-dpa-template.docx' %}">Data processing agreement</a> · <a href="mailto:{{ contact_email }}">{{ contact_email }}</a></p>
+</footer>
+</body>
+</html>

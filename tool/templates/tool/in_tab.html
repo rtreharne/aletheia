@@ -1,0 +1,20 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>{{ assignment.title }}</h1>
+<p class="notice"><strong>Your questions are open in another tab.</strong> Answer them there. When you finish, close that tab: your result appears here.</p>
+<div class="actions">
+  <a class="button quiet" href="{% url 'start_in_tab' assignment.pk attempt.pk %}?t={{ handoff|urlencode }}" target="_blank" rel="opener">Open my questions</a>
+</div>
+<p class="help">Use this if you closed the tab. The timer keeps running either way.</p>
+{% endblock %}
+{% block scripts %}
+<script>
+  // Show the result here once the quiz is finished.
+  (function poll() {
+    fetch("{% url 'attempt_status' assignment.pk attempt.pk %}", { credentials: "same-origin" })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { if (d.status !== "in_progress") location.reload(); else setTimeout(poll, 4000); })
+      .catch(function () { setTimeout(poll, 8000); });
+  })();
+</script>
+{% endblock %}

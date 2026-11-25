@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: aletheia
+      POSTGRES_USER: aletheia
+      POSTGRES_PASSWORD: aletheia
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aletheia"]
+      interval: 3s
+      retries: 10
+
+  web:
+    build: .
+    # Run as your user so generated files (keys, uploads) aren't owned by root.
+    user: "${UID:-1000}:${GID:-1000}"
+    ports:
+      # Local only; a tunnel on this machine can still reach it.
+      - "127.0.0.1:8014:8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgres://aletheia:aletheia@db:5432/aletheia
+      # Defaults suit local development. For a public tunnel set DEBUG=false,
+      # COOKIES_SECURE=true, SECRET_KEY, ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS in .env.
+      DEBUG: ${DEBUG:-true}
+      COOKIES_SECURE: ${COOKIES_SECURE:-false}
+      DEV_LOGIN: ${DEV_LOGIN:-true}
+      SECURE_SSL_REDIRECT: "false"
+      MEDIA_ROOT: /app/media
+      HOME: /tmp
+    command: sh -c "python manage.py generate_lti_keys && python manage.py migrate --noinput && python manage.py collectstatic --noinput -v 0 && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

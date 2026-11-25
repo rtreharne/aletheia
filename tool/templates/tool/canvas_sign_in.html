@@ -1,0 +1,68 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>{{ assignment.title|default:"Aletheia" }}</h1>
+{% if disconnected %}
+<p class="notice">Aletheia is no longer connected to this course.</p>
+{% else %}
+{% if problem %}<p class="notice">{{ problem }}</p>{% endif %}
+<p class="notice"><strong>Hand in here, not with Canvas's Submit button.</strong></p>
+<p>To sign in, find your name. We'll send a sign-in link to your Canvas inbox.</p>
+<form method="post" action="{% url 'canvas_send' assignment.pk %}" id="send">
+  {% csrf_token %}
+  <div class="field">
+    <label for="who">Your name</label>
+    <input type="search" id="who" autocomplete="off" spellcheck="false" placeholder="Start typing your name" aria-describedby="who-help">
+    <div class="help" id="who-help">Only people in this course are listed.</div>
+  </div>
+  <ul class="name-results" id="results" aria-live="polite"></ul>
+  <input type="hidden" name="member" id="member">
+  <div class="actions" id="confirm" hidden>
+    <button class="button" type="submit">Send a link to <span id="chosen"></span>'s inbox</button>
+  </div>
+</form>
+<p class="help">Canvas's Student View can't sign in, because it has no inbox. Staff can preview Aletheia as a student once signed in.</p>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var input = document.getElementById("who");
+  if (!input) return;
+  var list = document.getElementById("results"), member = document.getElementById("member");
+  var confirm = document.getElementById("confirm"), chosen = document.getElementById("chosen");
+  var token = document.querySelector("[name=csrfmiddlewaretoken]").value, timer, latest = 0;
+  function choose(r) {
+    member.value = r.id; chosen.textContent = r.name; confirm.hidden = false;
+    list.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.id == r.id)); });
+  }
+  input.addEventListener("input", function () {
+    clearTimeout(timer); confirm.hidden = true; member.value = "";
+    var q = input.value.trim(), mine = ++latest;
+    if (q.length < 2) { list.innerHTML = ""; return; }
+    timer = setTimeout(function () {
+      var body = new URLSearchParams({q: q});
+      fetch("{% url 'canvas_search' assignment.pk %}", {method: "POST", body: body, credentials: "same-origin",
+            headers: {"X-CSRFToken": token}})
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (mine !== latest) return;
+          list.innerHTML = "";
+          if (data.error) { list.innerHTML = '<li class="muted small"></li>'; list.firstChild.textContent = data.error; return; }
+          if (!data.results.length) { list.innerHTML = '<li class="muted small">No one in this course matches.</li>'; return; }
+          data.results.forEach(function (r) {
+            var li = document.createElement("li"), b = document.createElement("button");
+            b.type = "button"; b.className = "name-choice"; b.dataset.id = r.id; b.textContent = r.name;
+            b.setAttribute("aria-pressed", "false");
+            b.addEventListener("click", function () { choose(r); });
+            li.appendChild(b); list.appendChild(li);
+          });
+        });
+    }, 250);
+  });
+  document.getElementById("send").addEventListener("submit", function (e) {
+    if (!member.value) { e.preventDefault(); return; }
+    var b = this.querySelector("button[type=submit]"); b.disabled = true; b.textContent = "Sending";
+  });
+})();
+</script>
+{% endblock %}

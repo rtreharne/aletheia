@@ -1,0 +1,97 @@
+{
+  "slug": "economics",
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-11-25T09:17:26+00:00",
+  "objectives": [
+    {
+      "text": "Explain how negative externalities and internalities from alcohol consumption justify government intervention beyond the market price."
+    },
+    {
+      "text": "Compare a minimum unit price with a duty increase, explaining who receives the extra revenue and why Scotland chose a price floor."
+    },
+    {
+      "text": "Interpret how differences in price elasticity between drinker groups and products shape MUP's effects, including heavy drinkers' varied responses."
+    },
+    {
+      "text": "Justify whether MUP is regressive by distinguishing spending-based and health-based measures of its distributional impact, using the Wyper et al. findings."
+    }
+  ],
+  "questions": [
+    {
+      "objective_index": 0,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "In your brief, you give two distinct grounds for intervening in the alcohol market. What distinguishes the internalities argument from the externalities argument?",
+      "code": "",
+      "options": [
+        "It concerns harm heavy drinkers do to themselves through addiction and present bias",
+        "It concerns retailers capturing revenue that would otherwise go to government",
+        "It concerns demand being price-inelastic, so prices fail to reduce consumption",
+        "It concerns costs such as crime and NHS treatment borne by others"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "You argue that externalities are costs imposed on others, such as crime, accidents and NHS treatment. Internalities are a separate case: drinkers fail to act in their own long-run interest because of addiction and present bias. Crime and NHS costs are therefore the externalities argument, not the internalities one."
+    },
+    {
+      "objective_index": 1,
+      "position": 0,
+      "kind": "maq",
+      "prompt": "In your brief, you compare a minimum unit price with an alcohol duty increase. Which statements reflect your argument?",
+      "code": "",
+      "options": [
+        "A duty increase would target cheap strong cider more precisely than a price floor",
+        "The Scottish Government could not raise alcohol duty because it is reserved to Westminster",
+        "Extra revenue from the price floor goes to retailers and producers",
+        "A price floor leaves most pub and restaurant prices unchanged",
+        "Supermarkets lost revenue because demand for cheap alcohol is highly elastic",
+        "Extra revenue from the price floor is collected by the Scottish Government"
+      ],
+      "correct": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "You argue the floor's windfall goes to retailers rather than government, that duty is reserved to Westminster, and that on-trade prices already sit above the floor. The revenue does not go to the Scottish Government, which is why you recommend reinvesting an equivalent sum in treatment services."
+    },
+    {
+      "objective_index": 2,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "You argue elasticity varies across drinkers and products. What does this imply for heavy drinkers facing the minimum price?",
+      "code": "",
+      "options": [
+        "Their high responsiveness means they switch mainly to pubs and restaurants",
+        "Their low responsiveness means some maintain drinking by cutting spending elsewhere",
+        "Their high responsiveness means they reduce drinking more than anyone else",
+        "Their low responsiveness means the floor leaves their spending unchanged"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "You note the heaviest drinkers are least price-responsive, so some maintained consumption by switching products or cutting food and energy spending, a real welfare cost. Inelastic demand does not leave spending unchanged: paying higher prices for similar quantities raises it."
+    },
+    {
+      "objective_index": 3,
+      "position": 0,
+      "kind": "maq",
+      "prompt": "In your brief, you discuss whether minimum unit pricing is regressive. Which statements reflect your argument?",
+      "code": "",
+      "options": [
+        "Spending effects are irrelevant because duty revenue is returned to poorer households",
+        "The policy is progressive because poorer households drink less than richer ones",
+        "Health gains were concentrated among affluent drinkers, so the policy is regressive",
+        "Poorer households spend a larger share of income on affected products",
+        "Health gains were greatest in the 40% most deprived areas",
+        "The policy narrows health inequalities while slightly widening spending inequality"
+      ],
+      "correct": [
+        3,
+        4,
+        5
+      ],
+      "explanation": "You argue MUP looks regressive in money terms because poorer households spend more of their income on cheap alcohol, but Wyper et al. found the health gains concentrated in deprived areas, so it narrows health inequalities. Its verdict depends on the measure. MUP raises no duty revenue to return to anyone."
+    }
+  ]
+}

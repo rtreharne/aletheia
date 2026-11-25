@@ -1,0 +1,27 @@
+{% load aletheia %}
+<ol class="review">
+  {% for q in questions %}
+  <li>
+    <div class="meta">
+      {{ forloop.counter }} · Objective {{ q.objective_index|add:1 }}{% if instructor and q.position %} · follow-up{% endif %} · {% if q.kind == "maq" %}Multiple answer{% else %}Single answer{% endif %}
+      {% if q.answered %} · {% if q.is_correct %}<span class="tick">correct</span>{% else %}<span class="cross">incorrect</span>{% endif %}{% if q.timed_out %} · time ran out{% elif instructor %} · {{ q.answer_seconds|floatformat:1 }}s{% endif %}{% else %} · not answered{% endif %}
+    </div>
+    <div>{{ q.prompt|scripts }}</div>
+    {% if q.code %}<pre class="code"><code>{{ q.code }}</code></pre>{% endif %}
+    <div class="help italic">{{ q.objective|scripts }}</div>
+    <ul class="answers">
+      {% for r in q.rows %}
+        <li class="answer{% if r.chosen and r.correct %} hit{% elif r.chosen %} wrong-pick{% elif r.correct %} missed{% endif %}">
+          <span class="answer-text">{{ r.text|scripts }}</span>
+          {% if r.chosen and r.correct %}<span class="tag">✓ {% if instructor %}Chosen{% else %}Your answer{% endif %} · correct</span>
+          {% elif r.chosen %}<span class="tag">✗ {% if instructor %}Chosen{% else %}Your answer{% endif %} · wrong</span>
+          {% elif r.correct %}<span class="tag">Correct answer{% if q.kind == 'maq' %} · not chosen{% endif %}</span>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    {% if q.explanation and not q.is_correct or q.explanation and instructor %}
+      <p class="explanation">{{ q.explanation|scripts }}</p>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ol>

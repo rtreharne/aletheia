@@ -1,0 +1,99 @@
+{% extends "tool/legal_base.html" %}
+{% load static aletheia %}
+{% block title %}Terms of service{% endblock %}
+{% block heading %}Terms of service{% endblock %}
+{% block body %}
+<p class="lead">These terms are the contract between us and the institution that orders Aletheia. They apply to every order, including free pilots. Nothing in an order or purchase order overrides them unless we both sign a change.</p>
+
+<h2>1. Who's who</h2>
+<dl class="defs">
+  <dt>We, us</dt><dd>{{ legal.company_name|or_placeholder:"Company name" }}, the company named above.</dd>
+  <dt>You</dt><dd>The university, college or other organisation that places an order. An order is for one department, school or faculty (the <strong>department</strong>), named in the order.</dd>
+  <dt>Aletheia</dt><dd>Our software, used through your learning management system (<strong>LMS</strong>) by LTI 1.3, and its website.</dd>
+  <dt>Users</dt><dd>Your staff and students who open Aletheia from your LMS.</dd>
+  <dt>Academic year</dt><dd>1 September to the following 31 August.</dd>
+  <dt>Your content</dt><dd>Everything your users put into Aletheia, such as submissions, briefs, settings and answers, and the results Aletheia produces from it for you.</dd>
+</dl>
+
+<h2>2. Orders and the pilot</h2>
+<ol>
+  <li>An order covers one department for one academic year. It starts when we accept it in writing (email is enough) and ends on 31 August. It does not renew. To continue, place a new order.</li>
+  <li>A free pilot covers one course, up to 300 students, for one semester, as agreed with you in writing. Pilots are free. At the end of the pilot you may place an order or stop. If you stop, you owe nothing.</li>
+</ol>
+
+<h2>3. Fees</h2>
+<ol>
+  <li>The fee is £5 per <strong>counted student</strong>, per academic year, plus VAT.</li>
+  <li>A counted student is a student who hands in at least one attempt in the department's courses during the academic year. Each student counts once in that year, however many courses and assignments they use. Students who never hand in are not counted. Our records of hand-ins decide the count, and we will show you them on request.</li>
+  <li>The minimum is 100 counted students (£500 plus VAT) per department, per academic year, whenever in the year the order starts.</li>
+  <li>We invoice the minimum when we accept the order. After 31 August we invoice any counted students above 100, at £5 each. Invoices are payable within 30 days. We accept purchase orders; if you need a purchase order number on an invoice, give it to us before we invoice.</li>
+  <li>There is no limit on attempts, other than the limits you set, and no charge for attempts beyond the fee for each counted student.</li>
+  <li>If an invoice is unpaid 30 days after it is due, we may charge statutory interest under the Late Payment of Commercial Debts (Interest) Act 1998, and suspend Aletheia for that department after giving you 14 days' notice.</li>
+  <li>We may change our prices for future academic years. A change never applies to an order we have already accepted.</li>
+</ol>
+
+<h2>4. What we provide</h2>
+<ol>
+  <li>Every feature of Aletheia, with no premium tier, for the department's courses.</li>
+  <li>A setup call to install Aletheia in your LMS and set up your first assignment.</li>
+  <li>Email support at <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>. We reply by the end of the next working day (Monday to Friday, excluding public holidays in England).</li>
+  <li>A data processing agreement, which forms part of these terms (see section 7).</li>
+  <li>We take reasonable care to keep Aletheia available and working, but we do not promise it will be uninterrupted or error-free. We will tell you in advance of planned maintenance where we reasonably can.</li>
+</ol>
+
+<h2>5. What Aletheia's results mean</h2>
+<ol>
+  <li>Aletheia uses an AI model (Claude, provided by Anthropic) to write learning objectives and questions from each submission. AI-written questions can occasionally be unclear or wrong.</li>
+  <li>Alignment scores, answer times and integrity logs are evidence for your staff to weigh alongside their own judgement. They are not a finding that a student did or did not write their work, and must not be the sole basis for an academic misconduct decision.</li>
+  <li>Aletheia never sets, changes or clears a grade. All marking decisions are yours.</li>
+</ol>
+
+<h2>6. Your responsibilities</h2>
+<ol>
+  <li>Install and configure Aletheia in your LMS, and keep your LMS accounts secure.</li>
+  <li>Make sure you have a lawful basis to process your students' and staff's personal data with Aletheia, and tell students, through your own privacy information, that their work will be checked this way.</li>
+  <li>Not use Aletheia unlawfully, attempt to break or overload it, reverse-engineer it, or resell it.</li>
+  <li>Not upload content you have no right to share.</li>
+</ol>
+
+<h2>7. Data protection</h2>
+<ol>
+  <li>For your users' personal data, you are the controller and we are your processor. Our <a href="{% static 'tool/legal/aletheia-dpa-template.docx' %}">data processing agreement</a> applies to every order and pilot, and forms part of these terms. If you have your own data processing agreement and we both sign it, yours applies instead.</li>
+  <li>Our <a href="{% url 'privacy' %}">privacy notice</a> explains what we process and how long we keep it.</li>
+</ol>
+
+<h2>8. Ownership</h2>
+<ol>
+  <li>You and your users own your content. You give us permission to use it only to provide Aletheia to you, as set out in the data processing agreement. We do not use it to train AI models, and we do not allow our AI provider to.</li>
+  <li>We own Aletheia and everything in it apart from your content. Your order gives the department's users a non-exclusive, non-transferable right to use Aletheia during the academic year.</li>
+</ol>
+
+<h2>9. Confidentiality</h2>
+<p>Each of us will keep the other's confidential information confidential, and use it only for the purposes of these terms. This doesn't cover information that is public, already known to the receiver, or required to be disclosed by law, including under the Freedom of Information Act 2000. We understand that, as a public body, you may have to disclose these terms or an order.</p>
+
+<h2>10. Liability</h2>
+<ol>
+  <li>Nothing in these terms limits liability for death or personal injury caused by negligence, for fraud, or for anything else that can't be limited by law.</li>
+  <li>Neither of us is liable for loss of profits, revenue, goodwill or anticipated savings, or for indirect or consequential loss.</li>
+  <li>Otherwise, each party's total liability under or in connection with an order is limited to the greater of the fees paid and payable under that order and £1,000. For a free pilot, the limit is £1,000.</li>
+</ol>
+
+<h2>11. Ending an order early</h2>
+<ol>
+  <li>Either of us may end an order by written notice if the other materially breaches these terms and doesn't put it right within 30 days of being told, or becomes insolvent.</li>
+  <li>If you end an order because of our breach, we refund the fees you have paid for the rest of the academic year, in proportion to the time left. Otherwise fees already invoiced remain payable.</li>
+  <li>When an order ends, we delete or return your users' personal data as the data processing agreement says.</li>
+</ol>
+
+<h2>12. General</h2>
+<ol>
+  <li>Neither of us is liable for delay or failure caused by events beyond its reasonable control.</li>
+  <li>We may update these terms for future orders. The terms in force when we accept an order apply to that order.</li>
+  <li>Neither of us may transfer an order to someone else without the other's written consent, which won't be unreasonably withheld.</li>
+  <li>These terms, the order and the data processing agreement are the whole agreement between us about Aletheia.</li>
+  <li>These terms are governed by the law of England and Wales, and the courts of England and Wales have exclusive jurisdiction.</li>
+</ol>
+
+<h2>Contact</h2>
+<p><a href="mailto:{{ contact_email }}">{{ contact_email }}</a> · {{ legal.registered_address|or_placeholder:"registered address" }}</p>
+{% endblock %}

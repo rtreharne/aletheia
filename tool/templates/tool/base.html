@@ -1,0 +1,30 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% block title %}Aletheia{% endblock %}</title>
+<link rel="icon" href="{% static 'tool/icons/favicon.ico' %}" sizes="any">
+<link rel="icon" type="image/png" href="{% static 'tool/icons/favicon-32.png' %}" sizes="32x32">
+<link rel="apple-touch-icon" href="{% static 'tool/icons/apple-touch-icon.png' %}">
+<link rel="stylesheet" href="{% static 'tool/aletheia.css' %}">
+{% block head %}{% endblock %}
+</head>
+<body>
+{% block before %}{% endblock %}
+<main class="page">
+  <header class="top">{% block header_action %}{% endblock %}</header>
+  {% if request.launch.preview %}
+  <div class="preview-bar" role="status">
+    <span><strong>Previewing as a student.</strong> Nothing is handed in, and staff don't see this attempt.</span>
+    {% if request.launch.preview_of and assignment %}<form method="post" action="{% url 'preview_stop' assignment.pk %}">{% csrf_token %}<button class="link-button" type="submit">Stop preview</button></form>{% endif %}
+  </div>
+  {% endif %}
+  {% block content %}{% endblock %}
+</main>
+<footer class="foot">
+  <a class="mark" href="{% url 'home' %}" target="_blank" rel="noopener" title="About Aletheia (opens in a new tab)">ALETHEIA</a>
+</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>

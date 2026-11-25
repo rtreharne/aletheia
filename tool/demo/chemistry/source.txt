@@ -1,0 +1,58 @@
+# Kinetics of the persulfate–iodide clock reaction
+
+CHM1203 Physical Chemistry Laboratory · Experiment 4 · Lab report
+
+## Abstract
+
+The reaction between peroxodisulfate and iodide ions, S<sub>2</sub>O<sub>8</sub><sup>2−</sup> + 2I<sup>−</sup> → 2SO<sub>4</sub><sup>2−</sup> + I<sub>2</sub>, was studied by the clock method at 295 K and at four further temperatures between 285 K and 325 K. The initial-rates method gave a reaction order of 1.02 ± 0.06 with respect to iodide and 0.97 ± 0.05 with respect to peroxodisulfate, consistent with the rate equation rate = k[S<sub>2</sub>O<sub>8</sub><sup>2−</sup>][I<sup>−</sup>]. The rate constant at 295 K was 6.3 × 10<sup>−3</sup> mol<sup>−1</sup> dm<sup>3</sup> s<sup>−1</sup>. An Arrhenius plot gave an activation energy of 53 ± 3 kJ mol<sup>−1</sup>.
+
+## Introduction
+
+The oxidation of iodide by peroxodisulfate is one of the most thoroughly studied reactions in solution kinetics, with a series of careful studies beginning in the 1920s<sup>1,2</sup>, and it is a standard teaching experiment.<sup>3</sup> In a clock reaction a small, fixed amount of a second reagent removes a product as fast as it forms, until that reagent is used up and the product suddenly appears. Here, a known amount of thiosulfate reduces the iodine as it is produced (I<sub>2</sub> + 2S<sub>2</sub>O<sub>3</sub><sup>2−</sup> → 2I<sup>−</sup> + S<sub>4</sub>O<sub>6</sub><sup>2−</sup>). When the thiosulfate is exhausted, free iodine forms a blue complex with starch. The time t taken for the blue colour to appear corresponds to the formation of a fixed amount of iodine, so 1/t is proportional to the initial rate, provided that only a small fraction of the reactants has been consumed. The appearance of colour is not instantaneous once the thiosulfate is exhausted, but the delay is short compared with the times measured here.<sup>4</sup> Because thiosulfate regenerates iodide, the iodide concentration also stays effectively constant during the timed period.
+
+## Method
+
+Solutions of potassium iodide (0.200 mol dm<sup>−3</sup>), potassium peroxodisulfate (0.100 mol dm<sup>−3</sup>), sodium thiosulfate (0.0050 mol dm<sup>−3</sup>) and starch were prepared. Ionic strength was held constant by making each mixture up with potassium chloride solution in place of the reagent being varied. For each run, 10.0 cm<sup>3</sup> of the thiosulfate and 2 cm<sup>3</sup> of starch were added to the iodide solution in a boiling tube, which was equilibrated in a water bath. The peroxodisulfate solution, equilibrated separately, was added and a stopwatch started. Each run was repeated three times and the mean time used.
+
+To find the order with respect to iodide, the iodide volume was varied (5.0–20.0 cm<sup>3</sup>) with all other volumes fixed; the order with respect to peroxodisulfate was found in the same way. The temperature dependence was measured at 285, 295, 305, 315 and 325 K using the standard mixture.
+
+## Results
+
+A plot of ln(1/t) against ln[I<sup>−</sup>] was linear (R<sup>2</sup> = 0.996) with a gradient of 1.02 ± 0.06. The corresponding plot for peroxodisulfate gave a gradient of 0.97 ± 0.05 (R<sup>2</sup> = 0.993). Both orders were rounded to one, giving an overall second-order reaction.
+
+The rate constant was calculated from the initial rate of the standard run. The time to the colour change at 295 K was 74 s, and over that period the iodine formed was half the amount of thiosulfate present (2.5 × 10<sup>−5</sup> mol in a total volume of 50.0 cm<sup>3</sup>), giving an initial rate of 6.8 × 10<sup>−6</sup> mol dm<sup>−3</sup> s<sup>−1</sup>. With [S<sub>2</sub>O<sub>8</sub><sup>2−</sup>]<sub>0</sub> = 0.0200 mol dm<sup>−3</sup> and [I<sup>−</sup>]<sub>0</sub> = 0.0400 mol dm<sup>−3</sup>, this gives k = 8.5 × 10<sup>−3</sup> mol<sup>−1</sup> dm<sup>3</sup> s<sup>−1</sup>; the value quoted in the abstract is the mean of the three standard runs.
+
+Temperature results:
+
+T / K: 285, 295, 305, 315, 325
+t / s: 156, 74, 37, 19, 10
+
+A plot of ln(1/t) against 1/T was linear (R<sup>2</sup> = 0.998) with a gradient of −6.35 × 10<sup>3</sup> K. Since the gradient equals −E<sub>a</sub>/R, E<sub>a</sub> = 6.35 × 10<sup>3</sup> × 8.314 = 53 kJ mol<sup>−1</sup>.
+
+## Discussion
+
+The rate equation is first order in each reactant, which is consistent with a rate-determining step involving one peroxodisulfate ion and one iodide ion. The overall stoichiometry requires two iodide ions, so the reaction cannot be a single elementary step; a plausible mechanism is a slow bimolecular step forming an intermediate such as IS<sub>2</sub>O<sub>8</sub><sup>3−</sup>, followed by a fast reaction with a second iodide ion. In this experiment any iodine formed is removed by thiosulfate, so complications from the formation of tri-iodide ions, which affect the rate when iodine accumulates,<sup>1</sup> are avoided.
+
+The measured activation energy (53 kJ mol<sup>−1</sup>) is of the size expected for a reaction between two ions in solution and consistent with earlier kinetic studies.<sup>2,3</sup> The largest source of error is judging the moment of colour change, which is roughly ±1 s; this matters most at 325 K, where the times are shortest, and probably explains why that point lies slightly above the line. Ions such as Fe<sup>2+</sup> and Cu<sup>2+</sup> are known to catalyse this reaction, so trace contamination of glassware could also have shortened some times.
+
+The method relies on less than 5% of the peroxodisulfate reacting before the colour change. In the standard run 2.5 × 10<sup>−5</sup> mol of iodine formed from 1.0 × 10<sup>−3</sup> mol of peroxodisulfate, or 2.5%, so the initial-rate approximation is justified.
+
+Because both reactants are ions of the same sign, the rate should increase with ionic strength (the primary kinetic salt effect), as has been shown for this reaction at low ionic strength.<sup>5</sup> Keeping ionic strength constant with KCl was therefore essential when varying concentrations; without it, the apparent orders would have been inflated.
+
+## Conclusion
+
+The persulfate–iodide reaction is first order in each reactant, with k = 6.3 × 10<sup>−3</sup> mol<sup>−1</sup> dm<sup>3</sup> s<sup>−1</sup> at 295 K and E<sub>a</sub> = 53 ± 3 kJ mol<sup>−1</sup>. The clock method is simple and reproducible, but timing errors limit its precision at high temperatures; a spectrophotometric method following the iodine absorbance, which avoids judging a colour change by eye,<sup>6</sup> would improve this.
+
+## References
+
+(1) Jette, E.; King, C. V. The Oxidation of Iodide Ion by Persulfate Ion. I. The Effect of Tri-iodide Ion Formation on the Reaction Velocity. J. Am. Chem. Soc. 1929, 51 (4), 1034–1047. https://doi.org/10.1021/ja01379a008
+
+(2) King, C. V.; Jacobs, M. B. The Oxidation of Iodide Ion by Persulfate Ion. IV. Kinetics of the Reaction in Highly Dilute Aqueous Solution. J. Am. Chem. Soc. 1931, 53 (5), 1704–1714. https://doi.org/10.1021/ja01356a010
+
+(3) Moews, P. C.; Petrucci, R. H. The Oxidation of Iodide Ion by Persulfate Ion. J. Chem. Educ. 1964, 41 (10), 549. https://doi.org/10.1021/ed041p549
+
+(4) Church, J. A.; Dreskin, S. A. Kinetics of Color Development in the Landolt ("Iodine Clock") Reaction. J. Phys. Chem. 1968, 72 (4), 1387–1390. https://doi.org/10.1021/j100850a058
+
+(5) Knudsen, O. M.; King, C. V. The Oxidation of Iodide Ion by Persulfate Ion. V. The Rate at Low Ionic Strength. J. Am. Chem. Soc. 1938, 60 (3), 687–691. https://doi.org/10.1021/ja01270a053
+
+(6) Stock, E.; Morgan, M. A Spectroscopic Analysis of the Kinetics of the Iodine Clock Reaction without Starch. Chem. Educator 2010, 15 (1), 158–161. https://doi.org/10.1333/s00897102268a

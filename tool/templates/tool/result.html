@@ -1,0 +1,36 @@
+{% extends "tool/base.html" %}
+{% load aletheia %}
+{% block content %}
+<h1>{{ assignment.title }}</h1>
+<div class="score">{{ attempt.overall_alignment|floatformat:0 }}%</div>
+<div class="score-label">Alignment</div>
+{% if attempt.ran_out_of_time %}<p class="muted small" style="margin-top:1rem">Time ran out before every objective was reached; those not reached count as 0.</p>{% endif %}
+
+<h2>By learning objective</h2>
+<ul class="objectives">
+  {% for o in attempt.objective_alignment %}
+    {% if o.total or o.not_reached %}
+    <li>
+      <div class="objective-head"><span>{{ o.text|scripts }}</span><span class="pct">{% if o.total %}{{ o.alignment }}%{% else %}<span class="muted">Not reached</span>{% endif %}</span></div>
+      <div class="bar"><span style="width: {{ o.alignment }}%"></span></div>
+    </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<div class="actions">
+  <a class="button" href="{% url 'feedback' assignment.pk attempt.pk %}">Review your answers</a>
+  {% if demo %}
+    <a class="button quiet" href="{% url 'demo_review' attempt.pk %}">See what an instructor sees</a>
+  {% elif can_start %}<a class="button quiet" href="{% url 'assignment' assignment.pk %}">Try again</a>{% endif %}
+</div>
+{% if demo %}<p class="help"><a href="{% url 'home' %}#try">Try another example</a></p>{% endif %}
+{% if dev_reset %}
+<hr>
+<form method="post" action="{% url 'dev_reset' %}">
+  {% csrf_token %}
+  <button class="button quiet" type="submit">Reset</button>
+  <span class="help">&nbsp;Development only: deletes this student's attempts.</span>
+</form>
+{% endif %}
+{% endblock %}

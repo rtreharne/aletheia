@@ -1,0 +1,102 @@
+{% extends "tool/base.html" %}
+{% load aletheia %}
+{% block content %}
+{% if demo %}
+<p class="notice small"><strong>This is what an instructor sees</strong> for your demo attempt: every question with your answer, how long you took, and the integrity log. <a href="{% url 'attempt' assignment.pk attempt.pk %}">Back to your result</a> · <a href="{% url 'home' %}#try">Try another example</a></p>
+{% else %}
+<p class="small"><a href="{% url 'assignment' assignment.pk %}">← {{ assignment.title }}</a></p>
+{% endif %}
+<h1>{{ attempt.user_name|surname_first|default:attempt.lti_user_id }}</h1>
+<p class="muted small">
+  Attempt {{ attempt.number }}{% if others|length > 1 %} of
+  {% for o in others %}{% if o.pk == attempt.pk %}{{ o.number }}{% else %}<a href="{% url 'attempt_detail' assignment.pk o.pk %}">{{ o.number }}</a>{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %}
+  · {{ attempt.get_status_display }} · {{ attempt.created_at|date:"j M Y, H:i" }}
+  · <a href="{% if demo %}{% url 'demo_file' demo_slug %}{% else %}{% url 'attempt_file' assignment.pk attempt.pk %}{% endif %}">{{ attempt.original_filename }}</a>
+  {% if attempt.lms_status %} · Gradebook: {% if attempt.lms_status == "failed" %}<span class="cross">not handed in</span>{% else %}{{ attempt.get_lms_status_display|lower }}{% endif %}{% endif %}
+</p>
+{% if attempt.lms_error %}<p class="notice small">{{ attempt.lms_error }}</p>{% endif %}
+{% if attempt.file_confirmed_at %}
+<div class="muted small confirmations">
+  Confirmed the file {{ attempt.file_confirmed_at|date:"j M Y, H:i" }}{% if attempt.ai_policy_agreed_at %} ·
+  agreed to the <details class="inline-details"><summary>generative AI policy</summary><div class="policy">{{ attempt.ai_policy_text|linebreaks }}</div></details>{% endif %}
+</div>
+{% endif %}
+
+<div class="headline">
+  {% if attempt.status == "completed" %}
+  <div class="figure">
+    <span class="value">{{ attempt.overall_alignment|floatformat:0 }}%</span>
+    <span class="label">Alignment</span>
+  </div>
+  {% endif %}
+  <div class="figure{% if flags %} flagged{% endif %}">
+    <span class="value">{{ flags }}</span>
+    <span class="label">Flag{{ flags|pluralize }}</span>
+    <span class="detail">{% for n, label in flag_parts %}{{ n }} {{ label }}{% if not forloop.last %}<br>{% endif %}{% empty %}None recorded{% endfor %}</span>
+  </div>
+  {% if attempt.median_answer_seconds is not None %}
+  <div class="figure">
+    <span class="value">{{ attempt.median_answer_seconds|floatformat:1 }}s</span>
+    <span class="label">Median answer</span>
+    <span class="detail">{% if attempt.time_each_question %}of {{ attempt.seconds_per_question }}s per question{% else %}{{ attempt.time_limit_minutes }} min for the quiz{% endif %}{% if attempt.ran_out_of_time %}<br>ran out of time{% endif %}</span>
+  </div>
+  {% endif %}
+</div>
+
+<div class="invite">
+{% if demo %}
+  <form method="post" action="{% url 'demo_start' demo_slug %}">{% csrf_token %}<button class="button quiet" type="submit">Invite to try again</button></form>
+  <p class="help">In your course, this gives the student one more attempt, and they see your invitation when they next open the assignment. Here, it starts a fresh attempt for you.</p>
+{% elif invitation %}
+  <form method="post" action="{% url 'withdraw_invitation' assignment.pk attempt.pk %}">{% csrf_token %}
+    <p class="small">Invited to try again {{ invitation.created_at|date:"j M Y, H:i" }}, waiting for a new attempt. <button class="link-button" type="submit">Withdraw</button></p>
+  </form>
+{% else %}
+  <form method="post" action="{% url 'invite' assignment.pk attempt.pk %}">{% csrf_token %}<button class="button quiet" type="submit">Invite to try again</button></form>
+  <p class="help">Gives this student one more attempt{% if assignment.max_attempts %}, beyond the limit of {{ assignment.max_attempts }}{% endif %}. They see your invitation when they next open the assignment; nothing is sent to them or posted to your LMS.</p>
+{% endif %}
+</div>
+
+{% if attempt.status == "completed" %}
+  <h2>By learning objective</h2>
+  <ul class="objectives">
+    {% for o in attempt.objective_alignment %}
+      <li>
+        <div class="objective-head"><span>{{ o.text|scripts }}</span><span class="pct">{% if o.total %}{{ o.correct }}/{{ o.total }} · {{ o.alignment }}%{% else %}<span class="muted">not reached · 0%</span>{% endif %}</span></div>
+        {% if o.total %}<div class="bar"><span style="width: {{ o.alignment }}%"></span></div>{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% elif attempt.objectives %}
+  <h2>Learning objectives</h2>
+  <ol>{% for o in attempt.objectives %}<li>{{ o.text|scripts }}</li>{% endfor %}</ol>
+{% endif %}
+
+{% if questions %}
+<h2>Questions</h2>
+{% include "tool/_review.html" with instructor=True %}
+{% endif %}
+
+<h2>Integrity log</h2>
+{% if events %}
+<div class="table-wrap integrity">
+<table>
+  <thead><tr><th>Time</th><th>Event</th><th class="num">Question</th></tr></thead>
+  <tbody>
+  {% for e in events %}
+    <tr{% if e.flagged %} class="flagged"{% endif %}>
+      <td>{{ e.created_at|date:"H:i:s" }}</td>
+      <td>{{ e.get_kind_display }}{% if e.away_seconds is not None %} <span class="muted">after {{ e.away_seconds|floatformat:0 }}s</span>{% endif %}</td>
+      <td class="num">{% if e.question and e.question.order is not None %}{{ e.question.order|add:1 }}{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p class="muted">No events recorded.</p>
+{% endif %}
+{% if flags %}<p class="help">Flagged events are in red: leaving the page, switching windows, copy, cut, paste and missed room-word checks.</p>{% endif %}
+
+{% if attempt.error %}<h2>Error</h2><p class="muted small">{{ attempt.error }}</p>{% endif %}
+{% endblock %}

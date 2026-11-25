@@ -1,0 +1,6 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>You're signed in</h1>
+<p>Signed in as <strong>{{ member.name }}</strong> on this device for the next 12 hours.</p>
+<div class="actions"><a class="button" href="{{ canvas_assignment_url }}" target="_top">Continue to {{ assignment.title|default:"the assignment" }}</a></div>
+{% endblock %}

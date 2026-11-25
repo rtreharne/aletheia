@@ -1,0 +1,81 @@
+{% extends "tool/legal_base.html" %}
+{% load static aletheia %}
+{% block title %}Privacy notice{% endblock %}
+{% block heading %}Privacy notice{% endblock %}
+{% block body %}
+<p class="lead">This notice explains what personal data Aletheia handles, why, who it's shared with, how long it's kept, and your rights under UK data protection law (the UK GDPR and the Data Protection Act 2018).</p>
+
+<h2>1. Who is responsible for your data</h2>
+<dl class="defs">
+  <dt>Students and staff using Aletheia in a course</dt>
+  <dd>Your university or college decides how your data is used and is the <strong>controller</strong>. We process it only on their instructions, as their <strong>processor</strong>. Their own privacy notice applies too, and they are the first place to go with questions or requests about your data.</dd>
+  <dt>Website visitors, people who contact us, and customers' billing contacts</dt>
+  <dd>We are the controller: {{ legal.company_name|or_placeholder:"Company name" }}, registered with the Information Commissioner's Office under number {{ legal.ico_number|or_placeholder:"ICO registration number" }}.</dd>
+</dl>
+<p>Contact us about privacy at <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.</p>
+
+<h2>2. Students</h2>
+<p>When you open Aletheia from your course, we receive and keep:</p>
+<ul>
+  <li><strong>From your LMS:</strong> your name, an ID your LMS uses for you (not your student number, unless your LMS uses that), your role in the course, and the course and assignment names and IDs. If your LMS doesn't send a name, we use your email address as your name.</li>
+  <li><strong>What you upload:</strong> your file, the text we extract from it, when you confirmed it was the right file, and the generative AI policy you agreed to, with the time.</li>
+  <li><strong>Your check:</strong> the learning objectives and questions written from your work, your answers, how long each answer took, and your alignment scores.</li>
+  <li><strong>The integrity log:</strong> each time, during the questions, you leave the page, switch to another window or come back; copy, cut, paste or right-click; and the result of any room-word checks.</li>
+</ul>
+<p>Your instructors see all of this. You see your objectives, your scores, your answers with explanations, and how many times you left the page.</p>
+<p>We use it only to run the check for your institution: to write your questions, show results to you and your instructors, and, where your LMS supports it, hand your file in to your course gradebook. Your institution decides the lawful basis. For universities this is usually <em>public task</em> (UK GDPR Article 6(1)(e)).</p>
+<p><strong>No automated decisions.</strong> Aletheia doesn't decide anything about you. It never sets or changes a grade, and it doesn't conclude whether you wrote your work. Your scores and integrity log are evidence that your instructors weigh using their own judgement.</p>
+
+<h2>3. Staff</h2>
+<p>For instructors and other course staff we receive your name, LMS ID and course role, and keep the assignment settings you choose, invitations you send to students to try again, and when you did so. We use this only to run Aletheia for your institution.</p>
+
+<h2>4. Website visitors and people who contact us</h2>
+<ul>
+  <li><strong>Contact form and calls:</strong> your name, email address, institution and message, and the time of any call you book. We use them to reply, to arrange the call, and, if your institution becomes a customer, to administer the contract. Lawful basis: our legitimate interest in answering enquiries and selling Aletheia (Article 6(1)(f)).</li>
+  <li><strong>Demos:</strong> your answers to demo questions, kept with a random ID, not your name.</li>
+  <li><strong>IP addresses:</strong> kept for up to one hour to stop the contact form and demos being abused, then discarded. Our hosting provider may also keep short-lived server logs.</li>
+  <li><strong>Cookies:</strong> we use only two cookies, both strictly necessary: a session cookie that keeps you signed in to the course you opened (or your demo), and a security cookie that protects forms. We use no analytics, advertising or tracking cookies, and load nothing from third-party websites.</li>
+</ul>
+
+<h2>5. Who we share data with</h2>
+<p>We don't sell personal data or use it for advertising. We share it only with these service providers (sub-processors), under contracts that require them to protect it:</p>
+<div class="table-wrap">
+<table class="subprocessors">
+  <thead><tr><th>Provider</th><th>What for</th><th>Where</th></tr></thead>
+  <tbody>
+    <tr><td>Anthropic, PBC</td><td>Writes learning objectives, questions and explanations. Receives the extracted text of each submission, the assignment title and the instructor's brief. It is not sent students' names or LMS IDs, though a name may appear in the submission itself.</td><td>United States</td></tr>
+    <tr><td>{{ legal.hosting_provider|or_placeholder:"Hosting provider" }}</td><td>Hosts Aletheia and its database and files.</td><td>{{ legal.hosting_location|or_placeholder:"Hosting location" }}</td></tr>
+    <tr><td>{{ legal.email_provider|or_placeholder:"Email provider" }}</td><td>Sends emails about enquiries and booked calls. Never receives student data.</td><td>{{ legal.email_location|or_placeholder:"Location" }}</td></tr>
+    <tr><td>{{ legal.video_provider|or_placeholder:"Video call provider" }}</td><td>Hosts booked calls.</td><td>{{ legal.video_location|or_placeholder:"Location" }}</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Anthropic does not use data sent through its commercial API to train its models. Sending submission text to the United States is protected by {{ legal.transfer_mechanism|or_placeholder:"transfer mechanism, e.g. the UK International Data Transfer Addendum" }}.</p>
+<p>When your LMS asks for it, we also send your uploaded file back to your LMS as your gradebook submission. We may disclose data where the law requires it.</p>
+
+<h2>6. How long we keep it</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Data</th><th>Kept until</th></tr></thead>
+  <tbody>
+    <tr><td>Student submissions, answers, scores and integrity logs</td><td>31 August, a year after the end of the academic year they were made in. For example, data from 2026–27 is deleted on 31 August 2028. Your institution can ask us to delete it sooner.</td></tr>
+    <tr><td>Uploads that were never handed in (not confirmed)</td><td>Deleted when you discard them, or with the rest of the year's data.</td></tr>
+    <tr><td>Demo attempts</td><td>2 days</td></tr>
+    <tr><td>Enquiries and call bookings</td><td>24 months after our last contact, or longer for customers' contract records, which we keep for 6 years after the contract ends</td></tr>
+    <tr><td>Sessions</td><td>2 weeks</td></tr>
+    <tr><td>IP addresses for abuse prevention</td><td>1 hour</td></tr>
+  </tbody>
+</table>
+</div>
+<p>When an institution's order ends, we delete or return its users' data as our data processing agreement says.</p>
+
+<h2>7. Security</h2>
+<p>Aletheia is only served over HTTPS. Students and staff reach it only through their LMS, which proves who they are with signed LTI 1.3 messages; there are no separate passwords. Students can see only their own work, and staff only their own courses. Files handed in to an LMS are fetched through signed links that expire.</p>
+
+<h2>8. Your rights</h2>
+<p>You have the right to ask for a copy of your data, and to have it corrected or deleted; to object to or restrict how it's used; and to receive it in a portable form. Some rights depend on the lawful basis. If you're a student or staff member, please contact your institution first: they decide on requests about course data, and we help them respond. Otherwise, contact us at <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>. We reply within one month.</p>
+<p>You can complain to the Information Commissioner's Office at <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk/make-a-complaint</a> or on 0303 123 1113. We'd appreciate the chance to put things right first.</p>
+
+<h2>9. Changes</h2>
+<p>We'll update this notice if what we do changes, and show the new effective date at the top. We'll tell customers in advance about any new sub-processor.</p>
+{% endblock %}

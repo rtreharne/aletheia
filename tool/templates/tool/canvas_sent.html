@@ -1,0 +1,7 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>Check your Canvas inbox</h1>
+<p>We've sent a sign-in link to <strong>{{ member.name }}</strong>'s Canvas inbox. Open it within the next hour. It brings you back into Canvas, signed in.</p>
+<div class="actions"><a class="button" href="{{ inbox_url }}" target="_top">Open my Canvas inbox</a></div>
+<p class="help">Not you? <a href="{% url 'canvas_frame' assignment.pk %}">Choose a different name</a>. The link only works for whoever can read that inbox.</p>
+{% endblock %}

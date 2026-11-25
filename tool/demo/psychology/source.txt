@@ -1,0 +1,55 @@
+# Does one night of restricted sleep impair working memory? A within-subjects study
+
+PSY2105 Research Methods in Psychology · Practical report 2
+
+## Abstract
+
+Sleep loss is widely believed to impair working memory, but many studies use total sleep deprivation, which is more extreme than the short nights most students experience. This study tested whether one night of restricted sleep (four hours) reduces performance on a backward digit span task. Twenty-four undergraduates completed the task twice, once after a normal night and once after a restricted night, in counterbalanced order, with sleep checked by wrist actigraphy. Mean backward span was lower after restricted sleep (M = 5.1, SD = 1.2) than after normal sleep (M = 5.7, SD = 1.1), t(23) = 2.41, p = .024, d = 0.49. Participants also rated themselves as sleepier after restriction. The results suggest that even a single short night produces a moderate impairment in working memory, although the small sample and the use of a single task limit how far this can be generalised.
+
+## Introduction
+
+Working memory is the limited-capacity system that holds and manipulates information over a few seconds (Baddeley, 2012). It supports reasoning, reading and mental arithmetic, so even small impairments may matter for everyday performance. A meta-analysis of short-term sleep deprivation found reliable effects on working memory, alongside larger effects on simple attention (Lim & Dinges, 2010), and a more recent meta-analysis confirmed that sleep loss before learning impairs later memory (Newbury et al., 2021). Fewer studies have examined partial sleep restriction, which is far more common. Restricting sleep for several nights produces cumulative deficits in attention and working memory (Van Dongen et al., 2003) and impairs the encoding of new memories (Cousins et al., 2018), but less is known about the effect of a single short night.
+
+Backward digit span requires participants to repeat a sequence of digits in reverse order. Because reversing the sequence requires active manipulation, it is thought to depend more on the central executive than forward span, which mainly measures storage. If sleep loss particularly affects executive processes, backward span should be sensitive to restriction even when forward span is not.
+
+The hypothesis was that backward digit span would be lower after one night of restricted sleep than after a normal night.
+
+## Method
+
+### Design
+
+A within-subjects design was used, with sleep condition (normal, restricted) as the independent variable and longest backward span correctly recalled as the dependent variable. Order of conditions was counterbalanced, and the two sessions were at least one week apart so that participants had recovered from any effects of restriction.
+
+### Participants
+
+Twenty-four undergraduates (17 women, 7 men; aged 18–24, M = 19.8) were recruited by opportunity sampling. Exclusion criteria were a diagnosed sleep disorder, shift work and use of medication affecting sleep. A power analysis indicated that 24 participants would give 80% power to detect a within-subjects effect of d = 0.6 at α = .05.
+
+### Materials and procedure
+
+In the restricted condition participants went to bed at their usual time but set an alarm four hours later; in the normal condition they slept as usual. Sleep duration was recorded with a wrist actigraph. Testing took place between 9 and 11 a.m. Participants first rated their sleepiness on the Karolinska Sleepiness Scale (1–9), then completed the backward digit span task on a laptop: sequences began at three digits and increased by one after each correct trial, stopping after two consecutive errors at the same length.
+
+## Results
+
+Actigraphy confirmed the manipulation: mean sleep was 7.4 hours (SD = 0.8) in the normal condition and 4.1 hours (SD = 0.4) in the restricted condition. Sleepiness ratings were higher after restriction (M = 6.3) than after normal sleep (M = 3.8).
+
+Mean backward span was 5.7 (SD = 1.1) after normal sleep and 5.1 (SD = 1.2) after restricted sleep. The difference scores were approximately normally distributed (Shapiro–Wilk p = .31), so a paired-samples t-test was used. Span was significantly lower after restricted sleep, t(23) = 2.41, p = .024, with a medium effect size, d = 0.49. Eighteen of the 24 participants scored lower after restriction.
+
+## Discussion
+
+The hypothesis was supported: one night of four hours' sleep reduced backward digit span by around half a digit, a moderate effect. This is consistent with the view that sleep loss affects the executive component of working memory, and it extends findings from total deprivation to a level of sleep loss that many students experience before deadlines or examinations.
+
+Unlike studies of several nights of restriction (Cousins et al., 2018; Van Dongen et al., 2003), this study shows an effect after just one night, although it cannot say whether the deficit would grow with further short nights. Several limitations should be noted. The effect size observed (d = 0.49) was smaller than the d = 0.6 the study was powered to detect, so the study had less than 80% power for an effect of this size and the estimate is imprecise. Only one working memory task was used, and without a forward span condition it is not possible to say whether the impairment is specific to manipulation rather than to storage. Participants knew which condition they were in, and expectations about the effects of tiredness may have reduced their effort; the higher sleepiness ratings are compatible with either an effect of sleep or an effect of expectation. Finally, opportunity sampling of students limits generalisation to other age groups.
+
+Future studies should include both forward and backward span, measure motivation, and test whether a single recovery night restores performance.
+
+## References
+
+Baddeley, A. (2012). Working memory: Theories, models, and controversies. Annual Review of Psychology, 63(1), 1–29. https://doi.org/10.1146/annurev-psych-120710-100422
+
+Cousins, J. N., Sasmita, K., & Chee, M. W. L. (2018). Memory encoding is impaired after multiple nights of partial sleep restriction. Journal of Sleep Research, 27(1), 138–145. https://doi.org/10.1111/jsr.12578
+
+Lim, J., & Dinges, D. F. (2010). A meta-analysis of the impact of short-term sleep deprivation on cognitive variables. Psychological Bulletin, 136(3), 375–389. https://doi.org/10.1037/a0018883
+
+Newbury, C. R., Crowley, R., Rastle, K., & Tamminen, J. (2021). Sleep deprivation and memory: Meta-analytic reviews of studies on sleep deprivation before and after learning. Psychological Bulletin, 147(11), 1215–1240. https://doi.org/10.1037/bul0000348
+
+Van Dongen, H. P. A., Maislin, G., Mullington, J. M., & Dinges, D. F. (2003). The cumulative cost of additional wakefulness: Dose-response effects on neurobehavioral functions and sleep physiology from chronic sleep restriction and total sleep deprivation. Sleep, 26(2), 117–126. https://doi.org/10.1093/sleep/26.2.117

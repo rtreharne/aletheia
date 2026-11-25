@@ -1,0 +1,150 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>{{ assignment.title }}</h1>
+<p class="muted small">
+  {{ assignment.objective_count }} objective{{ assignment.objective_count|pluralize }} ·
+  {{ assignment.questions_per_objective }} question{{ assignment.questions_per_objective|pluralize }} each{% if assignment.retries_per_objective %} (+{{ assignment.retries_per_objective }} retr{{ assignment.retries_per_objective|pluralize:"y,ies" }}){% endif %} ·
+  {% if assignment.time_each_question %}{{ assignment.seconds_per_question }}s per question{% else %}{{ assignment.time_limit_minutes }} min for the quiz{% endif %} ·
+  {% if assignment.code_viva %}code viva · {% endif %}{% if assignment.max_attempts %}{{ assignment.max_attempts }} attempt{{ assignment.max_attempts|pluralize }}{% else %}unlimited attempts{% endif %} ·
+  <a href="{% url 'settings' assignment.pk %}">Settings</a>{% if assignment.room_word_required %} ·
+  <a href="{% url 'room_screen' assignment.pk %}" target="_blank" rel="noopener">Room word</a>{% endif %}
+</p>
+<form method="post" action="{% url 'preview_start' assignment.pk %}" class="preview-start">{% csrf_token %}
+  <button class="button quiet small" type="submit">Preview as student</button>
+  <span class="help">Try it yourself. Nothing is handed in, and your attempt isn't shown here.</span>
+</form>
+{% if not gradebook and not assignment.canvas_course %}
+<p class="notice small">Uploads aren't going to a gradebook. To have each upload handed in for marking in SpeedGrader, add Aletheia to your course as an assignment (Submission type: External Tool) rather than as a module link.</p>
+{% endif %}
+
+<h2>Students</h2>
+{% if class_list %}<p class="muted small">{{ started }} of {{ rows|length }} student{{ rows|length|pluralize }} {{ started|pluralize:"has,have" }} handed in.</p>{% endif %}
+{% if class_list_problem %}<p class="notice small">Couldn't read the class list from your course, so only students who have handed in are shown. <span class="muted">({{ class_list_problem|truncatechars:240 }})</span></p>{% endif %}
+{% if rows %}
+<div class="roster-search">
+  <label for="roster-search" class="visually-hidden">Search students by name</label>
+  <input type="search" id="roster-search" placeholder="Search by name" autocomplete="off" spellcheck="false">
+  <span class="muted small" id="roster-count" aria-live="polite"></span>
+</div>
+<div class="table-wrap">
+<table class="roster" id="roster">
+  <thead><tr>
+    <th aria-sort="none"><button type="button" class="sort" data-col="0" data-type="text">Student</button></th>
+    <th class="num" aria-sort="none"><button type="button" class="sort" data-col="1" data-type="number" data-first="desc">Alignment</button></th>
+    <th class="num" aria-sort="none"><button type="button" class="sort" data-col="2" data-type="number">Median time</button></th>
+    <th>Attempts</th>
+    <th class="num" aria-sort="none"><button type="button" class="sort" data-col="4" data-type="number" data-first="desc">Flags</button></th>
+  </tr></thead>
+  <tbody>
+  {% for row in rows %}
+    <tr{% if row.not_started %} class="not-started"{% endif %}>
+      <td data-sort="{{ row.name|lower }}">{{ row.name }}</td>
+      <td class="num" data-sort="{% if row.latest %}{{ row.latest.overall_alignment|stringformat:'f' }}{% endif %}">{% if row.latest %}{{ row.latest.overall_alignment|floatformat:0 }}%{% elif row.not_started %}<span class="muted">Not started</span>{% else %}<span class="muted">—</span>{% endif %}</td>
+      <td class="num" data-sort="{% if row.latest.median_answer_seconds is not None %}{{ row.latest.median_answer_seconds|stringformat:'f' }}{% endif %}">{% if row.latest.median_answer_seconds is not None %}{{ row.latest.median_answer_seconds|floatformat:1 }}s{% else %}<span class="muted">—</span>{% endif %}</td>
+      <td class="attempt-links">
+        {% for a in row.attempts %}<a href="{% url 'attempt_detail' assignment.pk a.pk %}" title="{{ a.get_status_display }}">{{ a.number }}</a>{% endfor %}
+      </td>
+      <td class="num" data-sort="{% if not row.not_started %}{{ row.flags }}{% endif %}">{% if row.logged %}<button type="button" class="log-open{% if row.flags %} flag{% endif %}" data-log="log-{{ forloop.counter }}" aria-haspopup="dialog" title="Integrity log">{{ row.flags }}</button>{% else %}<span class="muted">0</span>{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% for row in rows %}{% if row.logged %}
+<dialog class="overlay log" id="log-{{ forloop.counter }}" aria-labelledby="log-{{ forloop.counter }}-title">
+  <div class="overlay-head">
+    <h2 id="log-{{ forloop.counter }}-title">{{ row.name }}</h2>
+    <button type="button" class="link-button log-close">Close</button>
+  </div>
+  {% for attempt in row.logged %}
+    <div class="log-attempt">
+      <h3>Attempt {{ attempt.number }}<a class="small" href="{% url 'attempt_detail' assignment.pk attempt.pk %}">Full review</a></h3>
+      <table>
+        <thead><tr><th>Time</th><th>Event</th><th class="num">Question</th></tr></thead>
+        <tbody>
+        {% for e in attempt.log %}
+          <tr{% if e.flagged %} class="flagged"{% endif %}>
+            <td>{{ e.created_at|date:"H:i:s" }}</td>
+            <td>{{ e.get_kind_display }}{% if e.away_seconds is not None %} <span class="muted">after {{ e.away_seconds|floatformat:0 }}s</span>{% endif %}</td>
+            <td class="num">{% if e.question and e.question.order is not None %}{{ e.question.order|add:1 }}{% endif %}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endfor %}
+  <p class="help">Flagged events are in red: leaving the page, switching windows, copy, cut, paste and missed room-word checks.</p>
+</dialog>
+{% endif %}{% endfor %}
+<script>
+(function () {
+  // Sortable roster. Rows with no value (e.g. not started) always go last.
+  var table = document.getElementById("roster");
+  if (!table) return;
+  var body = table.tBodies[0], buttons = table.querySelectorAll("button.sort"), KEY = "aletheia-roster-sort";
+  function value(row, col, type) {
+    var raw = row.cells[col].dataset.sort;
+    if (raw === undefined || raw === "") return null;
+    return type === "number" ? parseFloat(raw) : raw;
+  }
+  function sortBy(button, dir) {
+    var col = +button.dataset.col, type = button.dataset.type, sign = dir === "asc" ? 1 : -1;
+    var rows = Array.prototype.slice.call(body.rows);
+    rows.sort(function (a, b) {
+      var x = value(a, col, type), y = value(b, col, type);
+      if (x === null || y === null) return x === y ? 0 : x === null ? 1 : -1;
+      var c = type === "number" ? x - y : x.localeCompare(y);
+      if (c === 0) c = value(a, 0, "text").localeCompare(value(b, 0, "text")) * sign;  // ties by name
+      return c * sign;
+    });
+    rows.forEach(function (r) { body.appendChild(r); });
+    buttons.forEach(function (b) { b.parentNode.setAttribute("aria-sort", "none"); });
+    button.parentNode.setAttribute("aria-sort", dir === "asc" ? "ascending" : "descending");
+    try { localStorage.setItem(KEY, button.dataset.col + ":" + dir); } catch (e) {}
+  }
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var current = button.parentNode.getAttribute("aria-sort");
+      var dir = current === "none" ? (button.dataset.first || "asc") : current === "ascending" ? "desc" : "asc";
+      sortBy(button, dir);
+    });
+  });
+  // Live name search: every word typed must appear in the name, in any order, ignoring case and accents.
+  var search = document.getElementById("roster-search"), count = document.getElementById("roster-count");
+  var LETTERS = { "ø": "o", "æ": "ae", "œ": "oe", "ß": "ss", "ł": "l", "đ": "d", "ð": "d", "þ": "th", "ı": "i" };
+  function fold(text) {
+    return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[øæœßłđðþı]/g, function (c) { return LETTERS[c]; });
+  }
+  search.addEventListener("input", function () {
+    var words = fold(search.value).split(/[\s,]+/).filter(Boolean), shown = 0, rows = body.rows;
+    for (var i = 0; i < rows.length; i++) {
+      var name = fold(rows[i].cells[0].textContent);
+      var match = words.every(function (w) { return name.indexOf(w) !== -1; });
+      rows[i].hidden = !match;
+      if (match) shown++;
+    }
+    count.textContent = words.length ? (shown ? "Showing " + shown + " of " + rows.length : "No students match") : "";
+  });
+  search.addEventListener("keydown", function (e) { if (e.key === "Escape") { search.value = ""; search.dispatchEvent(new Event("input")); } });
+
+  try {
+    var saved = (localStorage.getItem(KEY) || "").split(":");
+    var match = table.querySelector('button.sort[data-col="' + saved[0] + '"]');
+    if (match && (saved[1] === "asc" || saved[1] === "desc")) sortBy(match, saved[1]);
+  } catch (e) {}
+})();
+(function () {
+  document.querySelectorAll(".log-open").forEach(function (button) {
+    var dialog = document.getElementById(button.dataset.log);
+    button.addEventListener("click", function () { dialog.showModal(); });
+    dialog.querySelector(".log-close").addEventListener("click", function () { dialog.close(); });
+    dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
+  });
+})();
+</script>
+<p class="help">Alignment and median time are from each student's most recent completed attempt. Median time is how long the student typically took to answer, {% if assignment.time_each_question %}out of {{ assignment.seconds_per_question }}s{% else %}per question{% endif %}; fast correct answers are good evidence that the work is their own. Flags count times a student left the page, switched windows, copied, cut or pasted, or failed a room word check during the quiz.</p>
+{% else %}
+<p class="muted">No attempts yet.</p>
+{% endif %}
+{% endblock %}

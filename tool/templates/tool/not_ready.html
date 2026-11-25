@@ -1,0 +1,5 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>{{ assignment.title|default:"Not ready yet" }}</h1>
+<p class="muted">Your instructor hasn't set this up yet. Please check back later.</p>
+{% endblock %}

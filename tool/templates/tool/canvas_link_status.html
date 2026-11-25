@@ -1,0 +1,7 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>Sign in to Aletheia</h1>
+<p class="notice">{{ problem }}</p>
+{% if back %}<div class="actions"><a class="button" href="{{ back }}">Back to the assignment in Canvas</a></div>
+<p class="help">From the assignment, you can send yourself a new link.</p>{% endif %}
+{% endblock %}

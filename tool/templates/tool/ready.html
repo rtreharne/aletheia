@@ -1,0 +1,51 @@
+{% extends "tool/base.html" %}
+{% block header_action %}{% include "tool/_objectives.html" %}{% endblock %}
+{% block content %}
+<h1>Ready</h1>
+{% if attempt.room_word_required %}
+<p class="notice"><strong>Begin only when you're in the room.</strong> You'll need the word shown on the screen there. If you're not there yet, you can leave this page and come back during your session: your questions will wait.</p>
+{% endif %}
+<p>{{ objectives|length }} learning objective{{ objectives|length|pluralize }}, tested one at a time.</p>
+<p>{% if attempt.time_each_question %}{{ attempt.seconds_per_question }} seconds per question.{% else %}{{ attempt.time_limit_minutes }} minute{{ attempt.time_limit_minutes|pluralize }} for the whole quiz, starting when you begin.{% endif %}</p>
+<p class="muted">Some questions have one answer and some have several; each one tells you which. A wrong answer brings another question on the same objective. {% if attempt.time_each_question %}When the line at the top runs out, whatever you've selected is submitted.{% else %}The line at the top shows the time left for the whole quiz. When it runs out, whatever you've selected is submitted, and any objectives you haven't reached score 0.{% endif %} You can't go back.</p>
+<p class="muted">Stay on this page until you finish. If you leave it or switch to another window, that's recorded and shown to your instructor.</p>
+{% if new_tab %}
+<form method="get" action="{% url 'start_in_tab' assignment.pk attempt.pk %}" target="_blank" id="begin-form">
+  <input type="hidden" name="t" value="{{ handoff }}">
+{% else %}
+<form method="post" action="{% url 'begin' assignment.pk attempt.pk %}" id="begin-form">
+  {% csrf_token %}
+{% endif %}
+  {% if attempt.room_word_required %}
+  <p class="muted">You'll be asked for the room word again once or twice along the way, with 10 seconds to type it.</p>
+  <div class="field">
+    <label for="room_word">Room word</label>
+    <input type="text" id="room_word" name="room_word" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+    <div class="help">Type the word shown on the screen in the room.</div>
+    {% if room_error %}<ul class="errorlist"><li>{{ room_error }}</li></ul>{% endif %}
+  </div>
+  {% endif %}
+  <div class="actions"><button class="button" type="submit">Begin</button></div>
+  {% if new_tab %}<p class="help">Your questions open in a new tab. When you finish, close it and come back here for your result.</p>{% endif %}
+</form>
+{% if new_tab %}
+<div id="opened" hidden>
+  <p class="notice"><strong>Your questions are open in a new tab.</strong> If nothing opened, check your browser didn't block it, then try again.</p>
+</div>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+{% if new_tab %}
+<script>
+  // After opening the questions in a new tab, this frame shows where they went, then follows the quiz.
+  document.getElementById("begin-form").addEventListener("submit", function () {
+    var form = this;
+    setTimeout(function () {
+      form.hidden = true;
+      document.getElementById("opened").hidden = false;
+      setTimeout(function () { location.reload(); }, 4000);
+    }, 300);
+  });
+</script>
+{% endif %}
+{% endblock %}

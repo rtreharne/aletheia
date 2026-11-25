@@ -1,0 +1,41 @@
+A near-miss medication error on a surgical ward: a reflection using Gibbs' reflective cycle
+
+NUR2016 Safe and Effective Practice · Reflective account (all names and identifying details changed)
+
+Description
+
+During my second-year placement on a general surgical ward, I was preparing the 22:00 medications for a patient, whom I will call Mr A, under the supervision of my practice assessor. Mr A, aged 78, was two days after a bowel resection and was prescribed enoxaparin 40 mg subcutaneously once daily for prevention of venous thromboembolism. While checking the chart I noticed that enoxaparin had also been signed as given at 18:00 by the day staff, in a different section of the chart where it had been prescribed a second time by the admitting doctor. Mr A therefore appeared to be prescribed, and had already received, a dose that evening. I stopped, told my assessor, and we did not give the second dose. The duplicate prescription was cancelled by the on-call doctor, Mr A's renal function was checked, and an incident report was completed.
+
+Feelings
+
+At the time I felt a mix of anxiety and doubt. I was worried that I had misread the chart and would look foolish for questioning a prescription, especially as the day staff were experienced. Afterwards I felt relief that the error had been caught, but also uneasy, because if I had been working quickly I might have signed and given the dose without looking at the rest of the chart.
+
+Evaluation
+
+What went well was that I followed the checks I had been taught, in particular checking when the medicine was last given rather than only checking that it was due. My assessor responded positively, which made it easier to speak up. What went less well was that the duplicate prescription had existed for more than a day and had not been noticed at earlier medication rounds, and that I initially hesitated before raising it.
+
+Analysis
+
+The near miss resulted from several latent conditions rather than one person's mistake. In Reason's Swiss cheese model, errors occur when weaknesses in several layers of defence line up [1]. Here, the prescriber had written the drug twice when transcribing medicines on admission, the day nurse had given the 18:00 dose from one section of the chart without seeing the other, and the paper chart made duplicate entries easy to miss. The final layer of defence, the checking process at the next round, worked. Medication rounds on a busy surgical ward are also frequently interrupted, and interruptions during administration are associated with more frequent and more serious errors [2], which may help to explain how the duplicate was missed earlier in the day.
+
+Enoxaparin is a high-risk medicine because a double dose increases the risk of bleeding, particularly in older patients and those with reduced renal function, since the drug is cleared by the kidneys; low-molecular-weight heparins accumulate and bleeding is more common in patients with severe renal insufficiency [3]. This is why checking Mr A's renal function afterwards was important. The NMC Code requires nurses to raise concerns immediately when patient safety is at risk and to work within the limits of their competence [7]. My hesitation reflects what the literature describes as a barrier to speaking up: nursing students are often reluctant to question more senior colleagues, and their willingness to do so depends heavily on how staff respond [4,5]. Organisations with a positive safety culture reduce this barrier, and nurses who work in such cultures are more willing to report near misses [6].
+
+Conclusion
+
+I learned that safe medication administration depends on checking the whole chart, including when a drug was last given, and that speaking up is a professional duty rather than a matter of confidence. I also learned that near misses reveal weaknesses in systems, and that reporting them is how those weaknesses are fixed.
+
+Action plan
+
+1. I will check the full medication chart, including previous administrations and any other sections, before preparing any dose, especially for anticoagulants and other high-risk medicines.
+2. I will use structured communication (SBAR) to raise concerns clearly and promptly, even when I am unsure.
+3. I will ask to attend the ward's next medication safety meeting to learn how this incident has been reviewed and what changes have been made, such as moving to electronic prescribing.
+
+References
+
+1. Reason J. Human error: models and management. BMJ. 2000;320(7237):768-70. doi:10.1136/bmj.320.7237.768. Available from: https://doi.org/10.1136/bmj.320.7237.768
+2. Westbrook JI, Woods A, Rob MI, Dunsmuir WTM, Day RO. Association of interruptions with an increased risk and severity of medication administration errors. Arch Intern Med. 2010;170(8):683. doi:10.1001/archinternmed.2010.65. Available from: https://doi.org/10.1001/archinternmed.2010.65
+3. Lim W, Dentali F, Eikelboom JW, Crowther MA. Meta-analysis: low-molecular-weight heparin and bleeding in patients with severe renal insufficiency. Ann Intern Med. 2006;144(9):673-84. doi:10.7326/0003-4819-144-9-200605020-00011. Available from: https://doi.org/10.7326/0003-4819-144-9-200605020-00011
+4. Fagan A, Parker V, Jackson D. A concept analysis of undergraduate nursing students speaking up for patient safety in the patient care environment. J Adv Nurs. 2016;72(10):2346-57. doi:10.1111/jan.13028. Available from: https://doi.org/10.1111/jan.13028
+5. Fagan A, Lea J, Parker V. Conflict, confusion and inconsistencies: pre-registration nursing students' perceptions and experiences of speaking up for patient safety. Nurs Inq. 2021;28(1):e12381. doi:10.1111/nin.12381. Available from: https://doi.org/10.1111/nin.12381
+6. Yang Y, Liu H. The effect of patient safety culture on nurses' near-miss reporting intention: the moderating role of perceived severity of near misses. J Res Nurs. 2021;26(1-2):6-16. doi:10.1177/1744987120979344. Available from: https://doi.org/10.1177/1744987120979344
+7. Nursing and Midwifery Council. The Code: professional standards of practice and behaviour for nurses, midwives and nursing associates. London: NMC; 2018.

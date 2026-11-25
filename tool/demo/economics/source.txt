@@ -1,0 +1,53 @@
+# Minimum unit pricing for alcohol in Scotland: has it worked?
+
+ECN2210 Public Economics · Policy brief
+
+## Summary
+
+Scotland introduced a minimum unit price (MUP) for alcohol of 50p per unit in May 2018, raised to 65p in September 2024. The policy aims to reduce harmful drinking by raising the price of the cheapest, strongest drinks, which are disproportionately bought by heavy drinkers. A controlled evaluation estimates that MUP reduced deaths wholly attributable to alcohol by 13.4% and hospital admissions by 4.1% in its first years, with the largest effects in the most deprived areas (Wyper et al. 2023). This brief argues that MUP has been effective and well targeted, that its main costs fall on a minority of heavy drinkers, and that its regressive appearance is misleading once health effects are taken into account. It recommends that the price be uprated automatically with inflation.
+
+## The economic case for intervention
+
+Alcohol consumption imposes costs on people other than the drinker: crime, road accidents, NHS treatment and lost productivity. These are negative externalities, so the market price is below the social cost of consumption and drinking exceeds the socially optimal level. In addition, heavy drinkers may not act in their own long-run interest because of addiction and present bias, which provides a further, internalities-based case for intervention.
+
+The standard response to an externality is a Pigouvian tax. Alcohol duty already exists, but in the UK it is charged by volume of the product rather than by its alcohol content for some drinks, so very strong cheap ciders could be sold for as little as 20p per unit. A minimum price targets exactly these products. Unlike a duty increase, it leaves the price of most drinks bought in pubs and restaurants unchanged, because these already sell above the floor.
+
+## How a minimum price works
+
+A minimum price is a price floor. Where the floor is above the market price, retailers must raise prices; consumption of the affected products falls according to their price elasticity of demand. Demand for alcohol is price-inelastic overall, and responsiveness varies between groups of drinkers (Nelson 2014); it is likely to be higher for cheap off-trade products, which have close substitutes, and lower for the heaviest drinkers, who are the least responsive to price.
+
+There is one important difference from a tax: the extra revenue from a price floor goes to retailers and producers rather than to the government. Supermarkets therefore gained from MUP, and the Scottish Government gave up revenue that a duty increase of the same size would have raised. This is the main economic argument against MUP compared with taxation, although UK alcohol duty is reserved to Westminster, so a minimum price was the strongest instrument available to the Scottish Government.
+
+## Evidence
+
+Household purchase data show that the amount of alcohol bought fell after MUP was introduced, with the largest reductions among the households that had bought the most (O'Donnell et al. 2019); similar falls followed when Wales introduced the same policy in 2020 (Anderson et al. 2021). The official evaluation compared Scotland with England using a controlled interrupted time-series design and estimated a 13.4% reduction in deaths wholly attributable to alcohol and a 4.1% reduction in hospital admissions (Wyper et al. 2023). The reductions were greatest among men and among people living in the 40% most deprived areas.
+
+There was no clear evidence of increased crime, illicit alcohol or cross-border purchasing, although interviews with heavy drinkers suggest no single or simple response: some reduced their drinking, while others switched products or cut spending on food and energy to maintain it, which is a real welfare cost (Gill et al. 2017).
+
+## Is it regressive?
+
+Because poorer households spend a larger share of income on the affected products, MUP looks regressive. However, those households also suffer most of the harm. Since the health gains were concentrated in deprived areas, the policy narrows health inequalities even if it slightly widens the inequality of spending. Whether it is regressive therefore depends on whether we measure outcomes in money or in health.
+
+## The role of modelling
+
+Before implementation, the case for MUP rested largely on modelling of its likely effects, and the Sheffield model became central to the political and legal debate, partly because of how it was presented and argued for rather than simply because of its results (Katikireddi, Hilton, and Bond 2016). The evaluation evidence now allows those predictions to be tested against what happened.
+
+## Recommendations
+
+1. Retain MUP and uprate it automatically with inflation, so that its real value does not erode as it did between 2018 and 2024.
+2. Reinvest an equivalent sum in alcohol treatment services, offsetting the windfall to retailers.
+3. Monitor the effects on heavy drinkers with low incomes, who bear the largest costs.
+
+## References
+
+Anderson, Peter, Amy O'Donnell, Eileen Kaner, Eva Jané Llopis, Jakob Manthey, and Jürgen Rehm. 2021. "Impact of Minimum Unit Pricing on Alcohol Purchases in Scotland and Wales: Controlled Interrupted Time Series Analyses." The Lancet Public Health 6 (8): e557–65. https://doi.org/10.1016/S2468-2667(21)00052-9.
+
+Gill, J., H. Black, R. Rush, F. O'May, and J. Chick. 2017. "Heavy Drinkers and the Potential Impact of Minimum Unit Pricing—No Single or Simple Effect?" Alcohol and Alcoholism 52 (6): 722–29. https://doi.org/10.1093/alcalc/agx060.
+
+Katikireddi, Srinivasa Vittal, Shona Hilton, and Lyndal Bond. 2016. "The Role of the Sheffield Model on the Minimum Unit Pricing of Alcohol Debate: The Importance of a Rhetorical Perspective." Evidence & Policy 12 (4): 521–39. https://doi.org/10.1332/174426415X14430986392944.
+
+Nelson, Jon P. 2014. "Gender Differences in Alcohol Demand: A Systematic Review of the Role of Prices and Taxes." Health Economics 23 (10): 1260–80. https://doi.org/10.1002/hec.2974.
+
+O'Donnell, Amy, Peter Anderson, Eva Jané-Llopis, Jakob Manthey, Eileen Kaner, and Jürgen Rehm. 2019. "Immediate Impact of Minimum Unit Pricing on Alcohol Purchases in Scotland: Controlled Interrupted Time Series Analysis for 2015–18." BMJ 366: l5274. https://doi.org/10.1136/bmj.l5274.
+
+Wyper, Grant M. A., Daniel F. Mackay, Catriona Fraser, Jim Lewsey, Mark Robinson, Clare Beeston, and Lucie Giles. 2023. "Evaluating the Impact of Alcohol Minimum Unit Pricing on Deaths and Hospitalisations in Scotland: A Controlled Interrupted Time Series Study." The Lancet 401 (10385): 1361–70. https://doi.org/10.1016/S0140-6736(23)00497-X.

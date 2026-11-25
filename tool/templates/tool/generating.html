@@ -1,0 +1,15 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1 class="pulse">Reading your work</h1>
+<p class="muted">Drawing learning objectives from your submission. This usually takes under a minute.</p>
+{% endblock %}
+{% block scripts %}
+<script>
+  (function poll() {
+    fetch("{% url 'attempt_status' assignment.pk attempt.pk %}", {credentials: "same-origin"})
+      .then(function (r) { return r.json(); })
+      .then(function (d) { if (!d.waiting) location.reload(); else setTimeout(poll, 2500); })
+      .catch(function () { setTimeout(poll, 5000); });
+  })();
+</script>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "tool/base.html" %}
+{% load aletheia %}
+{% block title %}Objective {{ objective_number }} of {{ objective_total }} · Aletheia{% endblock %}
+{% block header_action %}{% with timer_running=True %}{% include "tool/_objectives.html" %}{% endwith %}{% endblock %}
+{% block before %}
+<div class="timer" role="timer" aria-label="Time remaining"><span id="bar"></span></div>
+{% endblock %}
+{% block content %}
+{% if left_last %}<p class="away-note">You left the page during the last question. This has been recorded.</p>{% endif %}
+<div class="progress">OBJECTIVE {{ objective_number }} / {{ objective_total }}{% if not attempt.time_each_question %}<span class="clock" id="clock" aria-live="off"></span>{% endif %}</div>
+<form method="post" action="{% url 'answer' assignment.pk attempt.pk %}" id="answer">
+  {% csrf_token %}
+  <input type="hidden" name="question" value="{{ question.pk }}">
+  <input type="hidden" name="expired" value="0" id="expired">
+  <p class="prompt">{{ question.prompt|scripts }}</p>
+  {% if question.code %}<pre class="code"><code>{{ question.code }}</code></pre>{% endif %}
+  <p class="hint">{% if question.kind == "maq" %}Select all that apply.{% else %}Select one.{% endif %}</p>
+  <div class="options">
+    {% for index, text in options %}
+      <label class="option">
+        <input type="{% if question.kind == 'maq' %}checkbox{% else %}radio{% endif %}" name="option" value="{{ index }}">
+        <span>{{ text|scripts }}</span>
+      </label>
+    {% endfor %}
+  </div>
+  <div class="actions"><button class="button" type="submit" id="next" disabled>Next</button></div>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  var remaining = {{ remaining|stringformat:"f" }};
+  var total = {{ timer_total }};
+  var form = document.getElementById("answer");
+  var bar = document.getElementById("bar");
+  var next = document.getElementById("next");
+  var sent = false;
+
+  function send(expired) {
+    if (sent) return;
+    sent = true;
+    document.getElementById("expired").value = expired ? "1" : "0";
+    next.disabled = true;
+    form.submit();
+  }
+
+  // Timer: shrink the bar linearly to nothing, then submit the current selection.
+  bar.style.transform = "scaleX(" + Math.max(0, remaining / total) + ")";
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      bar.style.transition = "transform " + remaining + "s linear";
+      bar.style.transform = "scaleX(0)";
+    });
+  });
+  setTimeout(function () { send(true); }, Math.max(0, remaining * 1000));
+
+  // Whole-quiz limit: show minutes and seconds left.
+  var clock = document.getElementById("clock");
+  if (clock) {
+    var ends = Date.now() + remaining * 1000;
+    (function tick() {
+      var left = Math.max(0, Math.round((ends - Date.now()) / 1000));
+      clock.textContent = Math.floor(left / 60) + ":" + ("0" + (left % 60)).slice(-2) + " left";
+      if (left > 0) setTimeout(tick, 250);
+    })();
+  }
+
+  form.addEventListener("change", function () {
+    next.disabled = !form.querySelector("input[name=option]:checked");
+  });
+  form.addEventListener("submit", function (e) { e.preventDefault(); send(false); });
+
+  // Integrity log. Leaving (blur or hide) and returning are each logged once
+  // per episode, and nothing is logged once the answer is being submitted.
+  var url = "{% url 'log_event' assignment.pk attempt.pk %}";
+  var token = "{{ csrf_token }}";
+  var away = false;
+  function log(kind) {
+    if (sent) return;
+    fetch(url, {
+      method: "POST",
+      credentials: "same-origin",
+      keepalive: true,
+      headers: {"Content-Type": "application/json", "X-CSRFToken": token},
+      body: JSON.stringify({kind: kind, question: {{ question.pk }}})
+    }).catch(function () {});
+  }
+  function leave(kind) { if (!away) { away = true; log(kind); } }
+  function back(kind) { if (away) { away = false; log(kind); } }
+  document.addEventListener("visibilitychange", function () { document.hidden ? leave("hidden") : back("visible"); });
+  window.addEventListener("blur", function () { leave("blur"); });
+  window.addEventListener("focus", function () { back("focus"); });
+  ["copy", "cut", "paste", "contextmenu"].forEach(function (k) {
+    document.addEventListener(k, function () { log(k); });
+  });
+})();
+</script>
+{% endblock %}

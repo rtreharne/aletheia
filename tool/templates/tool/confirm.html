@@ -1,0 +1,45 @@
+{% extends "tool/base.html" %}
+{% block content %}
+<h1>{{ assignment.title }}</h1>
+
+<h2>Check your file</h2>
+<p class="file-line"><span>{{ attempt.original_filename }}</span><span class="muted small">{{ file_size|filesizeformat }}</span></p>
+
+{% if is_pdf %}
+  <iframe class="preview-pdf" src="{% url 'upload_preview' assignment.pk attempt.pk %}#view=FitH" title="Preview of {{ attempt.original_filename }}"></iframe>
+{% else %}
+  <div class="preview-text{% if attempt.code_viva %} code{% endif %}" tabindex="0" aria-label="Text read from {{ attempt.original_filename }}">{{ preview_text }}</div>
+  <p class="help">This is the text Aletheia read from your file{% if truncated %} (the first part of it){% endif %}. Your questions will be based on it.</p>
+{% endif %}
+
+<form method="post" action="{% url 'confirm' assignment.pk attempt.pk %}" id="confirm">
+  {% csrf_token %}
+  <div class="field check{% if 'correct_file' in errors %} has-error{% endif %}">
+    <label for="correct_file"><input type="checkbox" id="correct_file" name="correct_file" value="1" required> This is the correct file: the work I mean to hand in.</label>
+    {% if 'correct_file' in errors %}<div class="error-text">Please confirm this is the right file.</div>{% endif %}
+  </div>
+
+  {% if policy %}
+    <h2>Generative AI policy</h2>
+    <div class="policy" tabindex="0">{{ policy|linebreaks }}</div>
+    <div class="field check{% if 'ai_policy' in errors %} has-error{% endif %}">
+      <label for="ai_policy"><input type="checkbox" id="ai_policy" name="ai_policy" value="1" required> I have read and agree to the generative AI policy.</label>
+      {% if 'ai_policy' in errors %}<div class="error-text">Please confirm you have read and agree to the policy.</div>{% endif %}
+    </div>
+  {% endif %}
+
+  <div class="actions">
+    <button class="button" type="submit">{% if attempt.room_word_required %}{% if gradebook %}Hand in{% else %}Continue{% endif %}{% elif gradebook %}Hand in and start{% else %}Start{% endif %}</button>
+    <button class="link-button" type="submit" form="discard">Choose a different file</button>
+  </div>
+  {% if gradebook %}<p class="help">Your file is handed in to your course for marking, then Aletheia prepares your questions.</p>{% endif %}
+  {% if attempt.room_word_required %}<p class="help">You'll answer the questions in the room: they open with a word shown on the screen at your in-person session.</p>{% endif %}
+</form>
+<form method="post" action="{% url 'discard' assignment.pk attempt.pk %}" id="discard">{% csrf_token %}</form>
+{% endblock %}
+{% block scripts %}
+<script>
+  var f = document.getElementById("confirm");
+  f.addEventListener("submit", function () { var b = f.querySelector("button.button"); b.disabled = true; b.textContent = "Starting"; });
+</script>
+{% endblock %}

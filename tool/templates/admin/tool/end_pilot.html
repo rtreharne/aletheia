@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>End pilot?</h1>
+<p>For {% for c in connections %}<strong>{{ c }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}, Aletheia will:</p>
+<ul>
+  <li>take its iframe out of {{ linked }} linked Canvas assignment{{ linked|pluralize }} (the assignments and their submissions stay), then</li>
+  <li>delete the stored API token. Nothing more can be done in that Canvas until a new token is entered.</li>
+</ul>
+<p>Attempts and results stay in Aletheia until they are deleted on the usual schedule.</p>
+<form method="post">{% csrf_token %}
+  {% for c in connections %}<input type="hidden" name="_selected_action" value="{{ c.pk }}">{% endfor %}
+  <input type="hidden" name="action" value="{{ action }}">
+  <input type="hidden" name="confirmed" value="yes">
+  <input type="submit" value="Yes, end the pilot">
+  <a href="{% url 'admin:tool_canvasconnection_changelist' %}" class="button cancel-link">No, go back</a>
+</form>
+{% endblock %}

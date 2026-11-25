@@ -1,0 +1,31 @@
+{% extends "admin/base_site.html" %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'admin:index' %}">Home</a> &rsaquo; <a href="{% url 'admin:tool_canvascourse_changelist' %}">Canvas courses</a> &rsaquo; <a href="{% url 'admin:tool_canvascourse_change' course.pk %}">{{ course }}</a> &rsaquo; Assignments</div>{% endblock %}
+{% block content %}
+<p>Linking puts Aletheia's iframe at the end of the assignment's description and makes sure it accepts file uploads. Nothing else in the assignment changes. Unlinking takes the iframe out again; submissions stay.</p>
+<p><a href="{{ course.url }}/assignments" target="_blank" rel="noopener">Open the course's assignments in Canvas</a></p>
+{% if error %}<p class="errornote">{{ error }}</p>{% endif %}
+<table style="width:100%">
+  <thead><tr><th>Canvas assignment</th><th>Published</th><th>Submission types</th><th>Aletheia</th><th></th></tr></thead>
+  <tbody>
+  {% for a in assignments %}
+    <tr>
+      <td><a href="{{ course.url }}/assignments/{{ a.id }}" target="_blank" rel="noopener">{{ a.name }}</a></td>
+      <td>{{ a.published|yesno:"Yes,No" }}</td>
+      <td>{{ a.submission_types|join:", " }}</td>
+      <td>{% if a.aletheia %}{% if a.has_frame %}Linked{% else %}Unlinked{% endif %}{% if a.aletheia.configured %} · configured{% else %} · not set up yet{% endif %}{% elif a.has_frame %}Has an Aletheia iframe, not in this database{% else %}—{% endif %}</td>
+      <td><form method="post">{% csrf_token %}
+        {% if a.aletheia and a.has_frame %}<button type="submit" name="unlink" value="{{ a.aletheia.pk }}">Unlink</button>
+        {% else %}<button type="submit" name="link" value="{{ a.id }}">Link</button>{% endif %}
+      </form></td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="5">No assignments in this course yet.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+<h2 style="margin-top:2rem">Create a new assignment with Aletheia in it</h2>
+<form method="post">{% csrf_token %}
+  <input type="text" name="new_name" placeholder="Assignment name" required maxlength="200" style="width:24rem">
+  <button type="submit">Create (unpublished)</button>
+</form>
+{% endblock %}

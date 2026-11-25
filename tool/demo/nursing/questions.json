@@ -1,0 +1,187 @@
+{
+  "slug": "nursing",
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-11-25T09:17:50+00:00",
+  "objectives": [
+    {
+      "text": "Explain how the duplicate enoxaparin prescription and missed earlier checks illustrate Reason's Swiss cheese model of latent conditions aligning to cause error."
+    },
+    {
+      "text": "Justify why a double dose of enoxaparin posed particular bleeding risk for Mr A and why his renal function was checked afterwards."
+    },
+    {
+      "text": "Evaluate how the action plan addresses both the student's hesitation to speak up and the system weaknesses that allowed the near miss."
+    }
+  ],
+  "questions": [
+    {
+      "objective_index": 0,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "In your analysis of the enoxaparin near miss, how does Reason's Swiss cheese model explain why the error nearly reached Mr A?",
+      "code": "",
+      "options": [
+        "The day nurse's failure to check the chart was the single root cause",
+        "Ward interruptions alone caused every check to fail on the same round",
+        "The prescriber's transcription error made harm inevitable once it occurred",
+        "Weaknesses in prescribing, administration and chart design lined up across several layers"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "You argued the near miss arose from several latent conditions aligning: duplicate transcription, administration from one chart section, and a paper chart that hid duplicates. Blaming the day nurse alone contradicts your point that it was not one person's mistake, and the final check showed harm was not inevitable."
+    },
+    {
+      "objective_index": 0,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "In your Swiss cheese analysis of the enoxaparin near miss, which statements accurately reflect how you applied the model?",
+      "code": "",
+      "options": [
+        "Latent conditions only matter once harm has actually reached the patient",
+        "The duplicate entry from admission transcription was a latent weakness in the prescribing layer",
+        "The paper chart's layout was itself a weakness that made duplicates easy to miss",
+        "The checking process at the 22:00 round was the defence layer that held",
+        "Earlier rounds missed the duplicate because staff ignored local medication policy",
+        "The incident shows that removing one careless individual would prevent recurrence"
+      ],
+      "correct": [
+        1,
+        2,
+        3
+      ],
+      "explanation": "You described weaknesses in prescribing, administration and chart design lining up, with the next round's checks finally stopping the error. You attributed the earlier misses to system factors such as interruptions, not to deliberate policy violation or one individual's carelessness."
+    },
+    {
+      "objective_index": 0,
+      "position": 2,
+      "kind": "mcq",
+      "prompt": "In your analysis, the duplicate prescription existed for over a day before you noticed it. What does this suggest about the system, in Swiss cheese terms?",
+      "code": "",
+      "options": [
+        "A latent weakness lay dormant until an active failure aligned with it",
+        "The 22:00 check was the first layer of defence to be tested",
+        "Latent conditions are created by the nurse administering the dose",
+        "The error only became a latent condition once the dose was given"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "You describe the admission transcription duplicate as a latent condition that persisted unnoticed until the 18:00 administration lined up with it. It existed before any dose was given, so it was not created by the administering nurse or by the dose itself."
+    },
+    {
+      "objective_index": 1,
+      "position": 0,
+      "kind": "maq",
+      "prompt": "In your reflection, you explain why a double dose of enoxaparin was especially dangerous for Mr A. Which statements reflect your reasoning?",
+      "code": "",
+      "options": [
+        "Enoxaparin is cleared by the liver, so renal checks assessed general recovery",
+        "A double dose mainly increased his risk of venous thromboembolism",
+        "Enoxaparin is cleared by the kidneys, so reduced renal function lets it accumulate",
+        "Bleeding with low-molecular-weight heparins is more common in severe renal insufficiency",
+        "Renal function was checked to see whether the second dose could safely be given",
+        "Mr A's age of 78 placed him in a group at higher bleeding risk"
+      ],
+      "correct": [
+        2,
+        3,
+        5
+      ],
+      "explanation": "You argue that older patients and those with poor renal function are at greater risk, because enoxaparin is renally cleared and accumulates, raising bleeding risk. Renal function was checked to judge harm from the dose already given. The second dose was withheld, not reconsidered."
+    },
+    {
+      "objective_index": 1,
+      "position": 1,
+      "kind": "mcq",
+      "prompt": "After withholding the second enoxaparin dose, Mr A's renal function was checked. In your reflection, what was the main purpose of that check?",
+      "code": "",
+      "options": [
+        "To establish whether enoxaparin had worked to prevent venous thromboembolism",
+        "To confirm he was well enough to receive the withheld dose later",
+        "To judge whether the dose already given might accumulate and raise bleeding risk",
+        "To check whether the bowel resection had caused dehydration-related kidney injury"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "You explain that enoxaparin is cleared by the kidneys, so reduced renal function lets it accumulate and increases bleeding, especially in an older patient. The check assessed risk from the dose already received, not readiness for the withheld second dose."
+    },
+    {
+      "objective_index": 1,
+      "position": 2,
+      "kind": "maq",
+      "prompt": "In your reflection, Mr A had already received enoxaparin at 18:00 when the duplicate was found. Which statements reflect why this situation carried particular bleeding risk?",
+      "code": "",
+      "options": [
+        "Being 78 and recently post-operative made bleeding more likely",
+        "A double dose would be harmless because enoxaparin is only preventive",
+        "The risk was limited to the second dose, not the one already given",
+        "Two doses in one evening could exceed his once-daily preventive dose",
+        "Any reduction in his kidney function could let the drug build up",
+        "Bleeding risk arose mainly because the dose was given subcutaneously"
+      ],
+      "correct": [
+        0,
+        3,
+        4
+      ],
+      "explanation": "You argued that a double dose raises bleeding risk, especially in older patients, and that enoxaparin is renally cleared, so impaired kidneys let it accumulate, which is why renal function mattered even after the 18:00 dose. Being preventive does not make an extra dose harmless."
+    },
+    {
+      "objective_index": 2,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "In your action plan, how do the three actions together respond to what caused the near miss?",
+      "code": "",
+      "options": [
+        "The plan targets interruptions on rounds, which you identified as the single root cause",
+        "Full-chart checks and SBAR address individual practice; the safety meeting engages with system fixes",
+        "SBAR addresses the system weakness, while attending the meeting addresses your hesitation",
+        "All three actions focus on your own checking, since the day nurse caused the error"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Your plan pairs personal actions (checking the whole chart, using SBAR to speak up promptly) with engaging in the ward's review of system changes such as electronic prescribing. This matches your Swiss cheese analysis, which rejects blaming one person or one cause."
+    },
+    {
+      "objective_index": 2,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "Your action plan responds to both your hesitation and wider system weaknesses. Which statements accurately evaluate how specific actions link to the causes you identified?",
+      "code": "",
+      "options": [
+        "SBAR is intended mainly to stop prescribers transcribing medicines twice",
+        "Attending the safety meeting connects your learning to system changes like electronic prescribing",
+        "Full-chart checks would remove the need to report near misses",
+        "Attending the safety meeting is mainly meant to overcome your reluctance to speak up",
+        "Checking previous administrations targets how the 18:00 dose was missed",
+        "Using SBAR aims to help you raise concerns promptly even when unsure"
+      ],
+      "correct": [
+        1,
+        4,
+        5
+      ],
+      "explanation": "SBAR addresses your hesitation, full-chart checks target the missed earlier administration, and the safety meeting links to system fixes such as electronic prescribing. SBAR does not prevent transcription errors, and reporting remains how system weaknesses are found and fixed."
+    },
+    {
+      "objective_index": 2,
+      "position": 2,
+      "kind": "mcq",
+      "prompt": "Your action plan relies partly on your own vigilance. Which evaluation best identifies a limitation in how it addresses the system weaknesses you analysed?",
+      "code": "",
+      "options": [
+        "Attending the safety meeting replaces the need for you to raise concerns personally",
+        "Personal checks add a defence layer but leave the duplicate-prone paper chart unchanged",
+        "SBAR removes the need for safety culture, so speaking up no longer depends on staff",
+        "Checking previous administrations fully prevents prescribers from transcribing medicines twice on admission"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Your full-chart checks and SBAR strengthen individual practice, but the latent conditions you identified, such as duplicate entries on paper charts, need system change; attending the meeting only lets you learn about fixes like electronic prescribing. Your own checks cannot stop prescribers transcribing medicines twice."
+    }
+  ]
+}

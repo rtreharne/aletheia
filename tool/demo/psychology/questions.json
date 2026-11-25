@@ -1,0 +1,187 @@
+{
+  "slug": "psychology",
+  "model": "claude-opus-5-5",
+  "generated_at": "2026-11-25T09:17:50+00:00",
+  "objectives": [
+    {
+      "text": "Justify the within-subjects design with counterbalanced order and a one-week gap, and the choice of backward rather than forward digit span."
+    },
+    {
+      "text": "Interpret the paired-samples t-test result, t(23) = 2.41, p = .024, d = 0.49, including why normality of difference scores was checked."
+    },
+    {
+      "text": "Evaluate how lack of blinding, a single task and an underpowered sample limit the conclusions, and propose design changes addressing each."
+    }
+  ],
+  "questions": [
+    {
+      "objective_index": 0,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "In your study, you chose backward rather than forward digit span. What was the main reason for this choice?",
+      "code": "",
+      "options": [
+        "Reversing digits requires active manipulation, so it taps the central executive",
+        "Backward span is less affected by practice across the two sessions",
+        "Backward span mainly measures storage, which sleep loss is known to disrupt",
+        "Backward span is longer, so it avoids ceiling effects after normal sleep"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "You argued that reversing a sequence requires active manipulation, relying on the central executive, which sleep loss may particularly affect. It is forward span that mainly measures storage, which is why you noted that without it you cannot separate manipulation from storage."
+    },
+    {
+      "objective_index": 0,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "Your study tested each participant in both sleep conditions, in counterbalanced order, at least one week apart. Which statements correctly justify these design features?",
+      "code": "",
+      "options": [
+        "Counterbalancing spreads practice effects equally across the two conditions",
+        "Counterbalancing stops participants knowing which condition they are in",
+        "Comparing each person with themselves removes individual differences in baseline span",
+        "The one-week gap allowed recovery so restriction did not carry over",
+        "A within-subjects design means sleep duration need not be measured",
+        "The one-week gap removes any practice effect on the second session"
+      ],
+      "correct": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "Testing everyone twice controls individual differences, counterbalancing balances order effects, and the week gap allowed recovery. Counterbalancing does not blind participants; you noted they knew their condition. The gap prevents carry-over of restriction but cannot remove practice effects, which counterbalancing handles instead."
+    },
+    {
+      "objective_index": 0,
+      "position": 2,
+      "kind": "mcq",
+      "prompt": "In your study, half the participants did the restricted night first. If everyone had done the normal night first, what problem would arise?",
+      "code": "",
+      "options": [
+        "Restriction effects would carry over into the normal-sleep session",
+        "Actigraphy would be unable to confirm the sleep manipulation",
+        "Participants could no longer be compared with themselves across conditions",
+        "Practice on the span task would be confounded with the sleep condition"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "With a fixed order, any improvement from practice would always fall in the second (restricted) session, confounding order with condition. Carry-over from restriction would not arise here, because restriction would come second, and your one-week gap addressed carry-over separately."
+    },
+    {
+      "objective_index": 1,
+      "position": 0,
+      "kind": "maq",
+      "prompt": "Your paired-samples t-test gave t(23) = 2.41, p = .024, d = 0.49. Which statements correctly interpret this result or your normality check?",
+      "code": "",
+      "options": [
+        "If sleep had no effect, a difference this large would occur about 2.4% of the time",
+        "Normality was checked on each condition's raw scores separately, as the test requires",
+        "Normality was checked on difference scores because the paired t-test analyses those differences",
+        "The 23 degrees of freedom reflect 24 pairs of scores minus one",
+        "There is a 2.4% probability that restricted sleep has no effect on span",
+        "A d of 0.49 means restriction lowered span by about half a digit"
+      ],
+      "correct": [
+        0,
+        2,
+        3
+      ],
+      "explanation": "A paired t-test works on each participant's difference score, so normality of those differences matters, and df = n − 1 pairs. The p-value is the probability of data this extreme if the null is true, not the probability the null is true; d is in SD units, not digits."
+    },
+    {
+      "objective_index": 1,
+      "position": 1,
+      "kind": "mcq",
+      "prompt": "In your study, the Shapiro–Wilk test on difference scores gave p = .31. What did this result tell you about your analysis?",
+      "code": "",
+      "options": [
+        "The sleep effect was not significant once normality was taken into account",
+        "The differences showed no significant departure from normality, so a paired t-test was appropriate",
+        "The differences were significantly non-normal, so a non-parametric test was needed",
+        "The two conditions had equal variances, so a paired t-test was appropriate"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "A non-significant Shapiro–Wilk result (p = .31) means the difference scores did not depart significantly from normality, supporting the paired t-test, which analyses those differences. It tests normality, not equality of variances, and says nothing about the sleep effect itself."
+    },
+    {
+      "objective_index": 1,
+      "position": 2,
+      "kind": "maq",
+      "prompt": "Your paired t-test compared span after normal and restricted sleep. Which statements about this analysis and its interpretation are accurate?",
+      "code": "",
+      "options": [
+        "The significant result confirms the study had at least 80% power for this effect",
+        "Pairing scores within participants reduces error variance compared with an independent-groups test",
+        "The effect size describes the mean difference relative to the variability of the difference scores",
+        "A non-significant Shapiro–Wilk result proves the difference scores are perfectly normal",
+        "A p of .024 shows the effect is large enough to matter in everyday life",
+        "The test works on each participant's difference between conditions, not the two sets of raw scores"
+      ],
+      "correct": [
+        1,
+        2,
+        5
+      ],
+      "explanation": "A paired t-test analyses within-person differences, which removes individual differences in baseline span and so reduces error, and d scales the mean difference by their variability. A small p shows the result is unlikely under chance, not that it matters practically. Shapiro–Wilk cannot prove normality, and you noted power was below 80%."
+    },
+    {
+      "objective_index": 2,
+      "position": 0,
+      "kind": "mcq",
+      "prompt": "You noted that participants knew their condition, so expectations may have reduced effort. Which design change would best address this limitation?",
+      "code": "",
+      "options": [
+        "Telling participants their actual sleep was longer or shorter than it was",
+        "Measuring motivation and including a placebo-style partial sleep condition",
+        "Recruiting enough participants to detect an effect of d = 0.49",
+        "Adding a forward digit span task alongside the backward span task"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Expectation effects arise because participants know they slept little; measuring motivation and comparing against a condition whose expected effects are matched separates sleep from expectation. Adding forward span addresses the single-task limitation, and a larger sample addresses power, not blinding."
+    },
+    {
+      "objective_index": 2,
+      "position": 1,
+      "kind": "maq",
+      "prompt": "Your discussion identifies several limitations. Which statements correctly describe what these limitations mean for your conclusions?",
+      "code": "",
+      "options": [
+        "Actigraphy confirming the manipulation rules out reduced effort as an explanation",
+        "Because the result was significant, being underpowered for d = 0.49 does not affect your conclusions",
+        "Higher sleepiness ratings cannot separate a genuine sleep effect from participants' expectations",
+        "Without forward span, the deficit cannot be attributed specifically to manipulation rather than storage",
+        "Counterbalancing order removes the influence of participants' expectations about tiredness",
+        "Lower power for the observed effect means your estimate of its size is imprecise"
+      ],
+      "correct": [
+        2,
+        3,
+        5
+      ],
+      "explanation": "A single backward task cannot isolate manipulation, self-rated sleepiness fits both sleep and expectation accounts, and lower power makes d = 0.49 imprecise. Significance does not cancel low power, and neither counterbalancing nor actigraphy addresses participants knowing their condition."
+    },
+    {
+      "objective_index": 2,
+      "position": 2,
+      "kind": "mcq",
+      "prompt": "Your observed effect was d = 0.49, but your study was powered for d = 0.6. Which design change would best address this limitation in a replication?",
+      "code": "",
+      "options": [
+        "Switch to an independent-groups design to remove practice effects",
+        "Raise the alpha level to .10 so the effect is easier to detect",
+        "Base a new power analysis on d = 0.49 and recruit more participants",
+        "Keep 24 participants but add forward span as a second outcome"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Detecting a smaller effect with 80% power needs a larger sample, so you would base the power analysis on d = 0.49 and recruit more people. Switching to independent groups would lose the error reduction from pairing and lower power further. Raising alpha only trades power for more false positives."
+    }
+  ]
+}
